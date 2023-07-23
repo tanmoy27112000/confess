@@ -125,3 +125,10 @@ app.*.map.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
+
+
+#freezed
+*.freezed.dart
+*.g.dart
+
+

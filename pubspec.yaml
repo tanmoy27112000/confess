@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
+  alice: null
   appwrite: ^8.1.0
   bloc: ^8.1.1
   flutter:
@@ -14,16 +15,31 @@ dependencies:
   flutter_bloc: ^8.1.2
   flutter_localizations:
     sdk: flutter
+  freezed_annotation: null
   go_router: ^10.0.0
+  google_fonts: null
+  hoverover: ^0.1.1
   intl: ^0.17.0
+  lottie: null
+  responsive_builder: ^0.7.0
+  responsive_framework: null
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   bloc_test: ^9.1.1
+  build_runner: null
+  flutter_gen_runner: null
   flutter_test:
     sdk: flutter
+  freezed: ^2.4.1
+  json_serializable: null
   mocktail: ^0.3.0
   very_good_analysis: ^4.0.0
 
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
