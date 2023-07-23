@@ -81,14 +81,14 @@ class Navbar extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Add Confession',
+                  'Login',
                   style: TextStyle(
                     color: isHovered ? Kcolor.pink : Colors.white,
                   ),
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );
