@@ -1,6 +1,8 @@
 import 'package:confess/constant/color.dart';
+import 'package:confess/screen/dashboard/widget/molecule/confess_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class DesktopDashboardScreen extends StatefulWidget {
   const DesktopDashboardScreen({super.key});
@@ -86,6 +88,21 @@ class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 20),
+          Center(
+            child: ResponsiveGridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 12,
+              gridDelegate: const ResponsiveGridDelegate(
+                maxCrossAxisExtent: 300,
+                mainAxisSpacing: 10,
+                childAspectRatio: 16 / 12,
+                crossAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) => const ConfessWidget(),
+            ),
+          )
         ],
       ),
     );
