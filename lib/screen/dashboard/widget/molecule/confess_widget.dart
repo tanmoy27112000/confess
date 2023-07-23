@@ -1,12 +1,17 @@
+import 'package:appwrite/models.dart';
 import 'package:confess/constant/color.dart';
+import 'package:confess/constant/date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ConfessWidget extends StatelessWidget {
   const ConfessWidget({
+    required this.confession,
     super.key,
   });
+
+  final Document confession;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +34,10 @@ class ConfessWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget mattis aliquam, nunc sapien aliquet nunc, vitae aliquam nisl nunc eu nisi.',
+                confession.data['confession'] as String,
                 style: TextStyle(
                   fontSize:
                       ResponsiveBreakpoints.of(context).isMobile ? 18 : 10,
@@ -42,7 +48,9 @@ class ConfessWidget extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  '18 June 2021',
+                  KdateFormatter.ddMMMyyy.format(
+                    DateTime.parse(confession.data['createdOn'] as String),
+                  ),
                   style: TextStyle(
                     fontSize:
                         ResponsiveBreakpoints.of(context).isMobile ? 16 : 10,

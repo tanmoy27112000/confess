@@ -132,3 +132,4 @@ app.*.map.json
 *.g.dart
 
 
+.env
