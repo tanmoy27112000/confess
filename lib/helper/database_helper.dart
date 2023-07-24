@@ -20,6 +20,7 @@ class DatabaseHelper {
     final result = await databases.listDocuments(
       databaseId: confessionDB,
       collectionId: confessionCollection,
+      queries: [Query.orderDesc('createdOn')],
     );
 
     if (result.documents.isEmpty) {
@@ -32,13 +33,14 @@ class DatabaseHelper {
 
   void getRealtimeConfessionCount() {
     final subscription = realtime.subscribe(
-      ['databases.$confessionDB.collections.$confessionCollection.documents'],
+      ['databases.$confessionDB.collections.$confessionCollection.documents.create'],
     );
 
     subscription.stream.listen((response) {
       getDocumentCount();
-      Ksnackbar.instance
-          .showNewConfession(title: response.payload['confession'] as String);
+      Ksnackbar.instance.showNewConfession(
+        title: response.payload['confession'] as String,
+      );
     });
   }
 
@@ -48,5 +50,21 @@ class DatabaseHelper {
 
   Future<void> getDocumentCount() async {
     await getAllConfession();
+  }
+
+  Future<void> addConfession({
+    required String text,
+    required String gender,
+  }) async {
+    await databases.createDocument(
+      databaseId: confessionDB,
+      collectionId: confessionCollection,
+      documentId: ID.unique(),
+      data: {
+        'confession': text,
+        'gender': gender,
+        'createdOn': DateTime.now().toIso8601String(),
+      },
+    );
   }
 }
