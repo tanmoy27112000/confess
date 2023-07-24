@@ -29,7 +29,7 @@ dependencies:
   url_strategy: ^0.2.0
 
 dev_dependencies:
-  bloc_test: ^9.1.1
+  bloc_test: ^9.1.3
   build_runner: null
   flutter_gen_runner: null
   flutter_test:
