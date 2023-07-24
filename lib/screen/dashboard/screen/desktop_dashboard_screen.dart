@@ -1,10 +1,11 @@
 import 'package:confess/constant/color.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
+import 'package:confess/screen/dashboard/widget/atom/btn_filled_atom.dart';
+import 'package:confess/screen/dashboard/widget/molecule/add_confess_dialogbox.dart';
 import 'package:confess/screen/dashboard/widget/molecule/confess_widget.dart';
 import 'package:confess/screen/dashboard/widget/molecule/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hoverover/hoverover.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class DesktopDashboardScreen extends StatefulWidget {
@@ -60,30 +61,10 @@ class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
           ),
           const SizedBox(height: 20),
           Center(
-            child: HoverOver(
-              builder: (isHovered) {
-                return AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isHovered ? Colors.white : Kcolor.pink,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(100),
-                    ),
-                    border: Border.all(
-                      color: isHovered ? Kcolor.pink : Colors.white,
-                    ),
-                  ),
-                  child: Text(
-                    'Add Confession',
-                    style: TextStyle(
-                      color: isHovered ? Kcolor.pink : Colors.white,
-                    ),
-                  ),
-                );
+            child: BtnFilled(
+              title: 'Add Confession',
+              onTap: () {
+                addConfessDialogbox(context);
               },
             ),
           ),
