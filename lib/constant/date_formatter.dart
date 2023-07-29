@@ -5,6 +5,9 @@ class KdateFormatter {
   // dd MMM yyyy
   static final DateFormat ddMMMyyy = DateFormat('dd MMM yyyy');
 
+  //25 Jul 2023
+  static final DateFormat ddMMMyyyy = DateFormat('dd MMM yyyy');
+
   //10-10-2022
   static final DateFormat ddMMyyyy = DateFormat('dd-MM-yyyy');
 

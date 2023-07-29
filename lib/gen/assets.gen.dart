@@ -9,19 +9,43 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/anonymous.png
+  AssetGenImage get anonymous =>
+      const AssetGenImage('assets/icons/anonymous.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [anonymous];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/background.png
+  AssetGenImage get background =>
+      const AssetGenImage('assets/images/background.png');
+
+  /// File path: assets/images/banner_bg.png
+  AssetGenImage get bannerBg =>
+      const AssetGenImage('assets/images/banner_bg.png');
+
+  /// File path: assets/images/banner_icon.png
+  AssetGenImage get bannerIcon =>
+      const AssetGenImage('assets/images/banner_icon.png');
 
   /// File path: assets/images/cover.png
   AssetGenImage get cover => const AssetGenImage('assets/images/cover.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [cover];
+  List<AssetGenImage> get values => [background, bannerBg, bannerIcon, cover];
 }
 
 class Assets {
   Assets._();
 
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 

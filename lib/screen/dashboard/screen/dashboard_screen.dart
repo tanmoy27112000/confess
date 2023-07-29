@@ -1,3 +1,4 @@
+import 'package:confess/gen/assets.gen.dart';
 import 'package:confess/helper/database_helper.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
 import 'package:confess/screen/dashboard/screen/desktop_dashboard_screen.dart';
@@ -34,11 +35,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ScreenTypeLayout.builder(
-        mobile: (BuildContext context) => const MobileDashboardScreen(),
-        tablet: (BuildContext context) => const TabDashboardScreen(),
-        desktop: (BuildContext context) => const DesktopDashboardScreen(),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: Assets.images.background.image().image,
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: ScreenTypeLayout.builder(
+          mobile: (BuildContext context) => const MobileDashboardScreen(),
+          tablet: (BuildContext context) => const TabDashboardScreen(),
+          desktop: (BuildContext context) => const DesktopDashboardScreen(),
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:confess/constant/color.dart';
 import 'package:confess/helper/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({
@@ -48,8 +49,7 @@ class Navbar extends StatelessWidget {
                 ),
                 ValueListenableBuilder<int>(
                   valueListenable: DatabaseHelper.instance.confessionList,
-                  builder:
-                      (BuildContext context, dynamic value, Widget? child) {
+                  builder: (BuildContext context, dynamic value, Widget? child) {
                     return Text(
                       '  $value',
                       style: const TextStyle(
@@ -63,6 +63,66 @@ class Navbar extends StatelessWidget {
             ),
           ),
           const Spacer(),
+          if (!ResponsiveBreakpoints.of(context).isMobile)
+            Row(
+              children: [
+                Container(
+                  width: 300,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                          child: TextField(
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Color(0xff1E0E62),
+                            ),
+                            decoration: InputDecoration(
+                              hintText: 'Search company, job title, or keywords',
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                fontSize: 10,
+                                color: Color(0xff1E0E62),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      //search icon
+
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: const BoxDecoration(
+                          color: Color(0xff1E0E62),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          if (!ResponsiveBreakpoints.of(context).isMobile) const Spacer(),
           HoverOver(
             builder: (isHovered) {
               return AnimatedContainer(

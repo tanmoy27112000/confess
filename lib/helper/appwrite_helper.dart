@@ -11,6 +11,10 @@ class AppwriteHelper {
 
   void init() {
     logger.d('Appwrite intialized -- $projectId');
-    client.setEndpoint('https://cloud.appwrite.io/v1').setProject(projectId).setSelfSigned();
+    client
+        .setEndpoint('https://cloud.appwrite.io/v1')
+        .setProject(projectId)
+        .setSelfSigned()
+        .addHeader('Access-Control-Allow-Origin', '*');
   }
 }
