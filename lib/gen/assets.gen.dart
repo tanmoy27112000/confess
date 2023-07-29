@@ -38,8 +38,13 @@ class $AssetsImagesGen {
   /// File path: assets/images/cover.png
   AssetGenImage get cover => const AssetGenImage('assets/images/cover.png');
 
+  /// File path: assets/images/rectangle_shap.png
+  AssetGenImage get rectangleShap =>
+      const AssetGenImage('assets/images/rectangle_shap.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [background, bannerBg, bannerIcon, cover];
+  List<AssetGenImage> get values =>
+      [background, bannerBg, bannerIcon, cover, rectangleShap];
 }
 
 class Assets {

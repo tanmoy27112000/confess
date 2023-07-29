@@ -1,0 +1,21 @@
+{
+    "projectId": "64bc278af30a7c835126",
+    "projectName": "confess",
+    "functions": [
+        {
+            "$id": "64c5711881e8b94a3fb0",
+            "name": "createCompanyData",
+            "runtime": "dart-2.17",
+            "path": "functions/createCompanyData",
+            "entrypoint": "lib/main.dart",
+            "ignore": [
+                ".packages",
+                ".dart_tool"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}

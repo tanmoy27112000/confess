@@ -11,6 +11,7 @@ class DatabaseHelper {
 
   String confessionDB = '64bc2bf6ee8e4c2af294';
   String confessionCollection = '64bc2c040bbc16e8bc6a';
+  String companyCollection = '64c57d0506af10f9b24e';
   Databases databases = Databases(AppwriteHelper.instance.client);
   final realtime = Realtime(AppwriteHelper.instance.client);
 
@@ -66,5 +67,25 @@ class DatabaseHelper {
         'createdOn': DateTime.now().toIso8601String(),
       },
     );
+  }
+
+  Future<void> createCompanyData(List<Map<String, dynamic>> csvDataList) async {
+    for (final element in csvDataList) {
+      try {
+        await databases.createDocument(
+          databaseId: confessionDB,
+          collectionId: companyCollection,
+          documentId: ID.unique(),
+          data: {
+            'name': element['name'],
+            'domain': element['domain'],
+            'startingYear': element['year founded'],
+            'industry': element['industry'],
+          },
+        );
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 }

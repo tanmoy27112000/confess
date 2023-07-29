@@ -1,8 +1,11 @@
 import 'package:confess/constant/color.dart';
 import 'package:confess/gen/assets.gen.dart';
+import 'package:confess/helper/database_helper.dart';
 import 'package:confess/routes/router.dart';
 import 'package:confess/screen/dashboard/screen/dashboard_screen.dart';
+import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -57,4 +60,24 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+}
+
+Future<void> createCompanyData(String assetPath) async {
+  final csvData = await rootBundle.loadString(assetPath);
+  final csvTable = const CsvToListConverter().convert(csvData);
+
+  // Assuming the first row contains column headers
+  final headers = List.castFrom<dynamic, String>(csvTable[0]);
+
+  final csvDataList = <Map<String, dynamic>>[];
+  for (var i = 1; i < csvTable.length; i++) {
+    final row = csvTable[i];
+    final rowData = <String, dynamic>{};
+    for (var j = 0; j < headers.length; j++) {
+      rowData[headers[j]] = row[j];
+    }
+    csvDataList.add(rowData);
+  }
+
+  await DatabaseHelper.instance.createCompanyData(csvDataList);
 }
