@@ -4,6 +4,7 @@ import 'package:confess/screen/dashboard/widget/atom/btn_filled_atom.dart';
 import 'package:confess/screen/dashboard/widget/molecule/add_confess_dialogbox.dart';
 import 'package:confess/screen/dashboard/widget/molecule/confess_widget.dart';
 import 'package:confess/screen/dashboard/widget/molecule/navbar.dart';
+import 'package:confess/screen/dashboard/widget/organism/dashboard_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -32,42 +33,7 @@ class _MobileDashboardScreenState extends State<MobileDashboardScreen> {
       child: ListView(
         children: [
           const Navbar(),
-          const SizedBox(height: 20),
-          Center(
-            child: Text(
-              'Latest confessions from around the world',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: Kcolor.purple,
-              ),
-            ),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: SizedBox(
-                width: 600,
-                child: Text(
-                  'Confess.life is a place where you can share your confessions anonymously and read confessions from other people.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Kcolor.grey,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Center(
-            child: BtnFilled(
-              title: 'Add Confession',
-              onTap: () {
-                addConfessDialogbox(context);
-              },
-            ),
-          ),
+          const DashboardBanner(),
           const SizedBox(height: 20),
           BlocBuilder<DashboardBloc, DashboardState>(
             bloc: dashboardBloc,
@@ -87,8 +53,7 @@ class _MobileDashboardScreenState extends State<MobileDashboardScreen> {
                       childAspectRatio: 16 / 12,
                       crossAxisSpacing: 20,
                     ),
-                    itemBuilder: (context, index) =>
-                        ConfessWidget(confession: confessionList[index]),
+                    itemBuilder: (context, index) => ConfessWidget(confession: confessionList[index]),
                   ),
                 ),
                 error: (message) => Center(
