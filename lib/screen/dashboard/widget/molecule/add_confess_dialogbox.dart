@@ -528,7 +528,14 @@ Future<dynamic> addConfessDialogbox(BuildContext context) {
                                             .getLatestConfession(),
                                       );
                                     },
-                                    child: const Text('Add Confessions'),
+                                    child: Text(
+                                      'Add Confessions',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Kcolor.white,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
