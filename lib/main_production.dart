@@ -5,8 +5,6 @@ import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await dotenv.load();
-  // secretModel = SecretModel.fromJson(dotenv.env);
   setPathUrlStrategy();
   await bootstrap(() => const App());
 }
