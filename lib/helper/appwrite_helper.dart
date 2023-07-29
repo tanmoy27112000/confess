@@ -10,10 +10,7 @@ class AppwriteHelper {
   String projectId = '64bc278af30a7c835126';
 
   void init() {
-    logger.d('Appwrite intialized -- ${secretModel.appwriteProject}');
-    client
-        .setEndpoint('https://cloud.appwrite.io/v1')
-        .setProject(secretModel.appwriteProject)
-        .setSelfSigned();
+    logger.d('Appwrite intialized -- $projectId');
+    client.setEndpoint('https://cloud.appwrite.io/v1').setProject(secretModel.appwriteProject).setSelfSigned();
   }
 }
