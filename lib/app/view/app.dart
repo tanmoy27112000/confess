@@ -49,6 +49,9 @@ class _AppState extends State<App> {
           colorScheme: ColorScheme.fromSwatch(
             accentColor: const Color(0xFF13B9FF),
           ),
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          hoverColor: Colors.transparent,
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
