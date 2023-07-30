@@ -102,7 +102,6 @@ class Navbar extends StatelessWidget {
                         ),
                       ),
                       //search icon
-
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: const BoxDecoration(

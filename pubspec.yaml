@@ -25,6 +25,7 @@ dependencies:
   logger: ^1.4.0
   lottie: null
   morphable_shape: ^1.6.6
+  paginated_search_bar: ^1.1.2
   responsive_builder: ^0.7.0
   responsive_framework: null
   simple_gradient_text: ^1.2.4

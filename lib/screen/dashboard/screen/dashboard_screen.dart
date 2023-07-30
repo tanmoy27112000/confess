@@ -4,7 +4,6 @@ import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
 import 'package:confess/screen/dashboard/screen/desktop_dashboard_screen.dart';
 import 'package:confess/screen/dashboard/screen/mobile_dashboard_screen.dart';
 import 'package:confess/screen/dashboard/screen/tab_dashboard_screen.dart';
-import 'package:confess/screen/splash/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
