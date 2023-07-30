@@ -1,4 +1,5 @@
 import 'package:confess/constant/color.dart';
+import 'package:confess/helper/auth_helper.dart';
 import 'package:confess/helper/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
@@ -124,25 +125,30 @@ class Navbar extends StatelessWidget {
           if (!ResponsiveBreakpoints.of(context).isMobile) const Spacer(),
           HoverOver(
             builder: (isHovered) {
-              return AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 5,
-                ),
-                decoration: BoxDecoration(
-                  color: isHovered ? Colors.white : Kcolor.pink,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(100),
+              return InkWell(
+                onTap: () {
+                  AuthHelper.instance.login();
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 5,
                   ),
-                  border: Border.all(
-                    color: isHovered ? Kcolor.pink : Colors.white,
+                  decoration: BoxDecoration(
+                    color: isHovered ? Colors.white : Kcolor.pink,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(100),
+                    ),
+                    border: Border.all(
+                      color: isHovered ? Kcolor.pink : Colors.white,
+                    ),
                   ),
-                ),
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                    color: isHovered ? Kcolor.pink : Colors.white,
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      color: isHovered ? Kcolor.pink : Colors.white,
+                    ),
                   ),
                 ),
               );

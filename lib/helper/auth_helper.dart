@@ -12,8 +12,10 @@ class AuthHelper {
   Future<void> login() async {
     final result = await account.createOAuth2Session(
       provider: 'google',
+      success: 'http://localhost:62549/auth.html',
     );
 
-    logger.d(result);
+    final user = await account.get();
+    logger.d(user.email);
   }
 }
