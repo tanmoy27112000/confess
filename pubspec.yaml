@@ -22,7 +22,7 @@ dependencies:
   google_fonts: null
   hoverover: ^0.1.1
   intl: ^0.17.0
-  logger: ^1.4.0
+  logger: ^2.0.1
   lottie: null
   morphable_shape: ^1.6.6
   paginated_search_bar: ^1.1.2
