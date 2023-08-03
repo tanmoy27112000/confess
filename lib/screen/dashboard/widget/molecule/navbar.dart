@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:searchfield/searchfield.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 
 final focus = FocusNode();
 
@@ -21,6 +22,17 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   TextEditingController controller = TextEditingController();
+
+  List<String> companyList = [
+    'Fortmindz Global Services Pvt Ltd ',
+    'Mindtree Limited',
+    'Tata Consultancy Services Limited',
+    'Wipro Limited',
+    'Accenture',
+    'Cognizant Technology Solutions',
+    'Capgemini',
+    'Infosys Limited',
+  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -90,13 +102,53 @@ class _NavbarState extends State<Navbar> {
                       width: 300,
                       height: 40,
                       child: SearchField(
+                        suggestions: const [],
                         searchStyle: const TextStyle(
                           fontSize: 12,
                         ),
-                        suggestionState: Suggestion.hidden,
                         controller: controller,
                         offset: const Offset(0, 43),
                         maxSuggestionsInViewPort: 10,
+                        onSearchTextChanged: (p0) {
+                          return p0.length >= 3
+                              ? companyList
+                                  .where(
+                                    (element) => element
+                                        .toLowerCase()
+                                        .contains(p0.toLowerCase()),
+                                  )
+                                  .toList()
+                                  .map(
+                                    (e) => SearchFieldListItem(
+                                      e,
+                                      child: ListTile(
+                                        minLeadingWidth: 0,
+                                        minVerticalPadding: 5,
+                                        iconColor: Kcolor.grey,
+                                        leading: Icon(
+                                          Icons.search,
+                                          color: Kcolor.grey,
+                                          size: 12,
+                                        ),
+                                        title: SubstringHighlight(
+                                          textStyleHighlight: TextStyle(
+                                            fontSize: 10,
+                                            color: Kcolor.darkPink,
+                                            fontWeight: FontWeight.w800,
+                                          ),
+                                          textStyle: TextStyle(
+                                            fontSize: 10,
+                                            color: Kcolor.grey,
+                                          ),
+                                          text: e,
+                                          term: controller.text,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList()
+                              : null;
+                        },
                         suggestionsDecoration: SuggestionDecoration(
                           color: Colors.white,
                           boxShadow: const [
@@ -131,56 +183,10 @@ class _NavbarState extends State<Navbar> {
                           border: InputBorder.none,
                         ),
                         key: const Key('searchfield'),
-                        suggestions: [
-                          'Fortmindz Global Services Pvt Ltd ',
-                          'Mindtree Limited',
-                          'Tata Consultancy Services Limited',
-                          'Wipro Limited',
-                          'Accenture',
-                          'Cognizant Technology Solutions',
-                          'Capgemini',
-                          'Infosys Limited',
-                        ]
-                            .map(
-                              (e) => SearchFieldListItem(
-                                e,
-                                child: ListTile(
-                                  minLeadingWidth: 0,
-                                  minVerticalPadding: 5,
-                                  iconColor: Kcolor.grey,
-                                  leading: Icon(
-                                    Icons.search,
-                                    color: Kcolor.grey,
-                                    size: 12,
-                                  ),
-                                  title: Text(
-                                    e,
-                                    style: TextStyle(
-                                      color: Kcolor.grey,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
+                        textInputAction: TextInputAction.search,
                         focusNode: focus,
                       ),
                     ),
-                    // Container(
-                    //   padding: const EdgeInsets.all(8),
-                    //   decoration: const BoxDecoration(
-                    //     color: Color(0xff1E0E62),
-                    //     borderRadius: BorderRadius.all(
-                    //       Radius.circular(100),
-                    //     ),
-                    //   ),
-                    //   child: const Icon(
-                    //     Icons.search,
-                    //     color: Colors.white,
-                    //     size: 15,
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

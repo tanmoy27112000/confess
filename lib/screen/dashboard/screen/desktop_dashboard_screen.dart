@@ -4,7 +4,6 @@ import 'package:confess/screen/dashboard/widget/molecule/navbar.dart';
 import 'package:confess/screen/dashboard/widget/organism/dashboard_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class DesktopDashboardScreen extends StatefulWidget {

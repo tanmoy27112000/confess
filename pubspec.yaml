@@ -31,6 +31,7 @@ dependencies:
   simple_gradient_text: ^1.2.4
   url_strategy: ^0.2.0
   searchfield: ^0.8.3
+  substring_highlight: ^1.0.33
 
 dev_dependencies:
   bloc_test: ^9.1.3
