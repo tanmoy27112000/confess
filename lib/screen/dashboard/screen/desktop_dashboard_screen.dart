@@ -28,6 +28,7 @@ class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView(
+        controller: ScrollController()..addListener(focus.unfocus),
         children: [
           const Navbar(),
           const DashboardBanner(),
@@ -50,7 +51,8 @@ class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
                       childAspectRatio: 16 / 12,
                       crossAxisSpacing: 10,
                     ),
-                    itemBuilder: (context, index) => ConfessWidget(confession: confessionList[index]),
+                    itemBuilder: (context, index) =>
+                        ConfessWidget(confession: confessionList[index]),
                   ),
                 ),
                 error: (message) => Center(

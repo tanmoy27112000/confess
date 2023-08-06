@@ -933,6 +933,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  searchfield:
+    dependency: "direct main"
+    description:
+      name: searchfield
+      sha256: b15f901e0a455c66fb9cb9b6f39a0c92860f2b5f411b6a37afa0215b36c05d70
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.3"
   sensors:
     dependency: transitive
     description:
@@ -1074,6 +1082,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  substring_highlight:
+    dependency: "direct main"
+    description:
+      name: substring_highlight
+      sha256: "96c61e8316098831f6bee87d2386617e4be6aaf87fbc89402dc049d371b67efb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.33"
   term_glyph:
     dependency: transitive
     description:

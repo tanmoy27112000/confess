@@ -34,7 +34,9 @@ class DatabaseHelper {
 
   void getRealtimeConfessionCount() {
     final subscription = realtime.subscribe(
-      ['databases.$confessionDB.collections.$confessionCollection.documents.create'],
+      [
+        'databases.$confessionDB.collections.$confessionCollection.documents.create'
+      ],
     );
 
     subscription.stream.listen((response) {
@@ -88,4 +90,12 @@ class DatabaseHelper {
       }
     }
   }
+
+  // Future<void> search(String searchKey) async {
+  //   final result = await databases.listDocuments(
+  //     databaseId: confessionDB,
+  //     collectionId: companyCollection,
+  //     queries: [],
+  //   );
+  // }
 }
