@@ -2,6 +2,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:confess/constant/snackbar.dart';
 import 'package:confess/helper/appwrite_helper.dart';
+import 'package:confess/model/company_model/company_model.dart';
 import 'package:flutter/material.dart';
 
 class DatabaseHelper {
@@ -34,9 +35,7 @@ class DatabaseHelper {
 
   void getRealtimeConfessionCount() {
     final subscription = realtime.subscribe(
-      [
-        'databases.$confessionDB.collections.$confessionCollection.documents.create'
-      ],
+      ['databases.$confessionDB.collections.$confessionCollection.documents.create'],
     );
 
     subscription.stream.listen((response) {
@@ -91,11 +90,27 @@ class DatabaseHelper {
     }
   }
 
-  // Future<void> search(String searchKey) async {
-  //   final result = await databases.listDocuments(
-  //     databaseId: confessionDB,
-  //     collectionId: companyCollection,
-  //     queries: [],
-  //   );
-  // }
+  Future<List<CompanyModel>> getCompanyData() async {
+    final result = await databases.listDocuments(
+      databaseId: confessionDB,
+      collectionId: companyCollection,
+      queries: [Query.limit(100)],
+    );
+
+    if (result.documents.isEmpty) {
+      return [];
+    } else {
+      return result.documents
+          .map(
+            (e) => CompanyModel(
+              id: e.$id,
+              name: e.data['name'] as String,
+              domain: e.data['domain'] as String,
+              startingYear: e.data['startingYear'] as double,
+              industry: e.data['industry'] as String,
+            ),
+          )
+          .toList();
+    }
+  }
 }

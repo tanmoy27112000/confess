@@ -7,4 +7,6 @@ class DashboardEvent with _$DashboardEvent {
   const factory DashboardEvent.getAllConfession() = _GetAllConfession;
   //get latest confession
   const factory DashboardEvent.getLatestConfession() = _GetLatestConfession;
+  //get company list
+  const factory DashboardEvent.getCompanyList() = _GetCompanyList;
 }

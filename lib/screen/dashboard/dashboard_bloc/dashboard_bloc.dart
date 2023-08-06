@@ -1,5 +1,6 @@
 import 'package:appwrite/models.dart';
 import 'package:bloc/bloc.dart';
+import 'package:confess/constant/contant.dart';
 import 'package:confess/helper/database_helper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -26,6 +27,19 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         confessionList.insert(0, newList.first);
         emit(const _Loading());
         emit(_Loaded(confessionList: confessionList));
+      } catch (e) {
+        emit(_Error(message: e.toString()));
+      }
+    });
+
+    on<_GetCompanyList>((event, emit) async {
+      try {
+        companyList.value = await DatabaseHelper.instance.getCompanyData();
+        emit(
+          _Loaded(
+            confessionList: confessionList,
+          ),
+        );
       } catch (e) {
         emit(_Error(message: e.toString()));
       }

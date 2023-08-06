@@ -22,7 +22,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     dashboardBloc = context.read<DashboardBloc>();
-    dashboardBloc.add(const DashboardEvent.getAllConfession());
+    dashboardBloc..add(const DashboardEvent.getAllConfession())
+    ..add(const DashboardEvent.getCompanyList());
     DatabaseHelper.instance.getRealtimeConfessionCount();
     // createCompanyData('assets/companyName.csv');
     super.initState();

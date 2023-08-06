@@ -73,8 +73,7 @@ class _NavbarState extends State<Navbar> {
                 ),
                 ValueListenableBuilder<int>(
                   valueListenable: DatabaseHelper.instance.confessionList,
-                  builder:
-                      (BuildContext context, dynamic value, Widget? child) {
+                  builder: (BuildContext context, dynamic value, Widget? child) {
                     return Text(
                       '  $value',
                       style: const TextStyle(
@@ -113,9 +112,7 @@ class _NavbarState extends State<Navbar> {
                           return p0.length >= 3
                               ? companyList
                                   .where(
-                                    (element) => element
-                                        .toLowerCase()
-                                        .contains(p0.toLowerCase()),
+                                    (element) => element.toLowerCase().contains(p0.toLowerCase()),
                                   )
                                   .toList()
                                   .map(
@@ -169,8 +166,7 @@ class _NavbarState extends State<Navbar> {
                         ),
                         hint: 'Search company, job title, or keywords',
                         searchInputDecoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.only(left: 5, top: 11),
+                          contentPadding: const EdgeInsets.only(left: 5, top: 11),
                           suffixIcon: Icon(
                             Icons.search_rounded,
                             color: Kcolor.black,

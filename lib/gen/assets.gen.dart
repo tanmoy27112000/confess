@@ -16,8 +16,11 @@ class $AssetsIconsGen {
   AssetGenImage get anonymous =>
       const AssetGenImage('assets/icons/anonymous.png');
 
+  /// File path: assets/icons/search.png
+  AssetGenImage get search => const AssetGenImage('assets/icons/search.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [anonymous];
+  List<AssetGenImage> get values => [anonymous, search];
 }
 
 class $AssetsImagesGen {
@@ -50,8 +53,12 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
+  static const String companyName = 'assets/companyName.csv';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+
+  /// List of all assets
+  List<String> get values => [companyName];
 }
 
 class AssetGenImage {
