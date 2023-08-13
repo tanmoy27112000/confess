@@ -78,10 +78,12 @@ class _NavbarState extends State<Navbar> {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 20,
+            horizontal: 10,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(width: 5),
               CircleAvatar(
                 radius: 12,
                 backgroundColor: Kcolor.white,
