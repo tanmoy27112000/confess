@@ -40,6 +40,7 @@ class _AppState extends State<App> {
         ),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         scaffoldMessengerKey: snackbarKey,
         routerConfig: router,
         restorationScopeId: 'confess',

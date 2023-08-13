@@ -32,6 +32,7 @@ dependencies:
   url_strategy: ^0.2.0
   searchfield: ^0.8.3
   substring_highlight: ^1.0.33
+  glassmorphism: ^3.0.0
 
 dev_dependencies:
   bloc_test: ^9.1.3
