@@ -34,6 +34,8 @@ class DatabaseHelper {
     required String text,
     required int gender,
     required String company,
+    required String name,
+    required String uid,
   }) async {
     await db.collection(confessionCollection).add(
       // documentId: ID.unique(),
@@ -44,7 +46,8 @@ class DatabaseHelper {
         'companyName': company,
         'likes': 0,
         'email': '',
-        'name': '',
+        'name': name,
+        'uid': uid,
       },
     );
   }

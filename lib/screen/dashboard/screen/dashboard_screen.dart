@@ -1,4 +1,5 @@
 import 'package:confess/gen/assets.gen.dart';
+import 'package:confess/helper/auth_helper.dart';
 import 'package:confess/helper/database_helper.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
 import 'package:confess/screen/dashboard/screen/desktop_dashboard_screen.dart';
@@ -24,7 +25,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     dashboardBloc = context.read<DashboardBloc>();
     dashboardBloc.add(const DashboardEvent.getAllConfession());
     DatabaseHelper.instance.getRealtimeConfessionCount();
-    // ..add(const DashboardEvent.getCompanyList());
+
+    AuthHelper.instance.checkUserLoggedIn();
 
     super.initState();
   }

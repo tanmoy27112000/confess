@@ -33,6 +33,7 @@ dependencies:
   responsive_builder: ^0.7.0
   responsive_framework: null
   searchfield: ^0.8.3
+  shared_preferences: ^2.2.1
   simple_gradient_text: ^1.2.4
   substring_highlight: ^1.0.33
   url_strategy: ^0.2.0

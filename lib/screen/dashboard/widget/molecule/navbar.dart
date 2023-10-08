@@ -1,8 +1,10 @@
 // ignore_for_file: inference_failure_on_instance_creation
 
 import 'package:confess/constant/color.dart';
+import 'package:confess/gen/assets.gen.dart';
 import 'package:confess/helper/auth_helper.dart';
 import 'package:confess/helper/database_helper.dart';
+import 'package:confess/helper/prefs_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -188,35 +190,83 @@ class _NavbarState extends State<Navbar> {
               ),
             ),
           if (!ResponsiveBreakpoints.of(context).isMobile) const Spacer(),
-          HoverOver(
-            builder: (isHovered) {
-              return InkWell(
-                onTap: () {
-                  // AuthHelper.instance.login();
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isHovered ? Colors.white : Kcolor.pink,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(100),
-                    ),
-                    border: Border.all(
-                      color: isHovered ? Kcolor.pink : Colors.white,
-                    ),
-                  ),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      color: isHovered ? Kcolor.pink : Colors.white,
-                    ),
-                  ),
-                ),
-              );
+          ValueListenableBuilder<bool>(
+            valueListenable: AuthHelper.instance.isLoggedIn,
+            builder: (BuildContext context, bool value, Widget? child) {
+              return value
+                  ? Container(
+                      height: 40,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(11),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: double.infinity,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const SizedBox(width: 8),
+                                CircleAvatar(
+                                  radius: 10,
+                                  backgroundColor: const Color(0xffFF6AC3),
+                                  child: Assets.icons.anonymous.image(width: 15),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  PrefsHelper.instance.userData?.displayName ?? '',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
+                                  ),
+                                ),
+                                const Icon(Icons.arrow_drop_down_rounded)
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : HoverOver(
+                      builder: (isHovered) {
+                        return InkWell(
+                          onTap: () {
+                            AuthHelper.instance.signInWithGoogle();
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 5,
+                            ),
+                            decoration: BoxDecoration(
+                              color: isHovered ? Colors.white : Kcolor.pink,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(100),
+                              ),
+                              border: Border.all(
+                                color: isHovered ? Kcolor.pink : Colors.white,
+                              ),
+                            ),
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                color: isHovered ? Kcolor.pink : Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
             },
           ),
         ],

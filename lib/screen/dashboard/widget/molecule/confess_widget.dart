@@ -43,20 +43,31 @@ class ConfessWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            confession.confession,
-                            style: TextStyle(
-                              fontSize: ResponsiveBreakpoints.of(context).isMobile ? 18 : 10,
-                              color: Kcolor.purple,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Text(
+                        confession.confession,
+                        style: TextStyle(
+                          fontSize: ResponsiveBreakpoints.of(context).isMobile ? 18 : 10,
+                          color: Kcolor.purple,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                        child: Text(
+                          ' - ${confession.companyName}',
+                          style: TextStyle(
+                            fontSize: ResponsiveBreakpoints.of(context).isMobile ? 16 : 10,
+                            color: Kcolor.violet,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -70,7 +81,7 @@ class ConfessWidget extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 10,
-                  backgroundColor: const Color(0xffFF6AC3),
+                  backgroundColor: confession.gender == 0 ? Colors.blue.shade300 : const Color(0xffFF6AC3),
                   child: Assets.icons.anonymous.image(width: 15),
                 ),
                 const SizedBox(width: 5),

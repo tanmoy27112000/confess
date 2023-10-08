@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously, cascade_invocations
+
 import 'package:confess/app/view/app.dart';
 import 'package:confess/constant/color.dart';
 import 'package:confess/constant/snackbar.dart';
 import 'package:confess/helper/database_helper.dart';
+import 'package:confess/helper/prefs_helper.dart';
 import 'package:confess/routes/router.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
 import 'package:confess/screen/dashboard/widget/atom/btn_filled_atom.dart';
@@ -11,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 Future<dynamic> addConfessDialogbox() {
-  final nameController = TextEditingController();
+  final nameController = TextEditingController()..text = PrefsHelper.instance.userData?.displayName ?? '';
   final confessionController = TextEditingController();
   final companyNameController = TextEditingController();
 
@@ -51,18 +54,32 @@ Future<dynamic> addConfessDialogbox() {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const TextField(
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      minLines: 6,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        hintText: 'Enter your confession',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
+                    nameField(nameController),
                     const SizedBox(height: 20),
-                    const Text('Your gender (OPTIONAL)'),
+                    confessionField(confessionController),
+                    const SizedBox(height: 20),
+                    companyField(companyNameController),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Text(
+                          'Gender',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Kcolor.black,
+                          ),
+                        ),
+                        Text(
+                          ' (Optional)',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Kcolor.darkblue,
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 20),
                     ValueListenableBuilder<String>(
                       valueListenable: selectedGender,
@@ -112,6 +129,8 @@ Future<dynamic> addConfessDialogbox() {
                                 text: confessionController.text,
                                 gender: selectedGender.value == 'Male' ? 0 : 1,
                                 company: companyNameController.text,
+                                name: nameController.text,
+                                uid: PrefsHelper.instance.userData?.uid ?? '',
                               );
                               router.pop(alice.getNavigatorKey()!.currentContext);
                               // ignore: use_build_context_synchronously
@@ -244,119 +263,11 @@ Future<dynamic> addConfessDialogbox() {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Name ',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: Kcolor.black,
-                                          ),
-                                        ),
-                                        Text(
-                                          '(Optional)',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                            color: Kcolor.darkblue,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8),
-                                    TextField(
-                                      controller: nameController,
-                                      decoration: const InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color.fromRGBO(
-                                              180,
-                                              198,
-                                              241,
-                                              0,
-                                            ),
-                                          ),
-                                        ),
-                                        fillColor: Color.fromRGBO(180, 198, 241, 0.37),
-                                        filled: true,
-                                        isDense: true,
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
+                                    nameField(nameController),
                                     const SizedBox(height: 20),
-                                    Text(
-                                      'Your Confession',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: Kcolor.black,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    TextField(
-                                      controller: confessionController,
-                                      keyboardType: TextInputType.multiline,
-                                      maxLines: null,
-                                      minLines: 6,
-                                      decoration: const InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color.fromRGBO(
-                                              180,
-                                              198,
-                                              241,
-                                              0,
-                                            ),
-                                          ),
-                                        ),
-                                        fillColor: Color.fromRGBO(180, 198, 241, 0.37),
-                                        filled: true,
-                                        isDense: true,
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
+                                    confessionField(confessionController),
                                     const SizedBox(height: 20),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Company Name ',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: Kcolor.black,
-                                          ),
-                                        ),
-                                        Text(
-                                          '(Optional)',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                            color: Kcolor.darkblue,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8),
-                                    TextField(
-                                      controller: companyNameController,
-                                      decoration: const InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color.fromRGBO(
-                                              180,
-                                              198,
-                                              241,
-                                              0,
-                                            ),
-                                          ),
-                                        ),
-                                        fillColor: Color.fromRGBO(180, 198, 241, 0.37),
-                                        filled: true,
-                                        isDense: true,
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
+                                    companyField(companyNameController),
                                     const SizedBox(height: 22),
                                     Row(
                                       children: [
@@ -491,15 +402,17 @@ Future<dynamic> addConfessDialogbox() {
                                       await DatabaseHelper.instance.addConfession(
                                         text: confessionController.text,
                                         gender: selectedGender.value == 'Male' ? 0 : 1,
+                                        name: nameController.text,
                                         company: companyNameController.text,
+                                        uid: PrefsHelper.instance.userData?.uid ?? '',
                                       );
                                       router.pop(
                                         alice.getNavigatorKey()!.currentContext,
                                       );
-                                      // ignore: use_build_context_synchronously
+
                                       final dashboardBloc =
                                           alice.getNavigatorKey()!.currentContext!.read<DashboardBloc>();
-                                      // ignore: cascade_invocations
+
                                       dashboardBloc.add(
                                         const DashboardEvent.getLatestConfession(),
                                       );
@@ -526,4 +439,137 @@ Future<dynamic> addConfessDialogbox() {
             },
           ),
         );
+}
+
+Column companyField(TextEditingController companyNameController) {
+  return Column(
+    children: <Widget>[
+      Row(
+        children: [
+          Text(
+            'Company Name ',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Kcolor.black,
+            ),
+          ),
+          Text(
+            '(Optional)',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: Kcolor.darkblue,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 8),
+      TextField(
+        controller: companyNameController,
+        decoration: const InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(
+                180,
+                198,
+                241,
+                0,
+              ),
+            ),
+          ),
+          fillColor: Color.fromRGBO(180, 198, 241, 0.37),
+          filled: true,
+          isDense: true,
+          border: OutlineInputBorder(),
+        ),
+      ),
+    ],
+  );
+}
+
+Column confessionField(TextEditingController confessionController) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Text(
+        'Your Confession',
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Kcolor.black,
+        ),
+      ),
+      const SizedBox(height: 8),
+      TextField(
+        controller: confessionController,
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        minLines: 6,
+        decoration: const InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(
+                180,
+                198,
+                241,
+                0,
+              ),
+            ),
+          ),
+          fillColor: Color.fromRGBO(180, 198, 241, 0.37),
+          filled: true,
+          isDense: true,
+          border: OutlineInputBorder(),
+        ),
+      ),
+    ],
+  );
+}
+
+Column nameField(TextEditingController nameController) {
+  return Column(
+    children: <Widget>[
+      Row(
+        children: [
+          Text(
+            'Name ',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Kcolor.black,
+            ),
+          ),
+          Text(
+            '(Optional)',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: Kcolor.darkblue,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 8),
+      TextField(
+        controller: nameController,
+        decoration: const InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(
+                180,
+                198,
+                241,
+                0,
+              ),
+            ),
+          ),
+          fillColor: Color.fromRGBO(180, 198, 241, 0.37),
+          filled: true,
+          isDense: true,
+          border: OutlineInputBorder(),
+        ),
+      ),
+    ],
+  );
 }

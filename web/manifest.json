@@ -1,11 +1,11 @@
 {
-    "name": "Confess",
+    "name": "Confess.life",
     "short_name": "Confess",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "My new Flutter app",
+    "description": "Confess is a social media platform where you can share your thoughts and feelings with the world anonymously.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

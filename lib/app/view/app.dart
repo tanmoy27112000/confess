@@ -1,4 +1,5 @@
 import 'package:alice/alice.dart';
+import 'package:confess/helper/prefs_helper.dart';
 import 'package:confess/l10n/l10n.dart';
 import 'package:confess/routes/router.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
@@ -26,6 +27,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    PrefsHelper.instance.init();
   }
 
   @override
