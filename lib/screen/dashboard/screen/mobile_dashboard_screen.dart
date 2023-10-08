@@ -1,7 +1,4 @@
-import 'package:confess/constant/color.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
-import 'package:confess/screen/dashboard/widget/atom/btn_filled_atom.dart';
-import 'package:confess/screen/dashboard/widget/molecule/add_confess_dialogbox.dart';
 import 'package:confess/screen/dashboard/widget/molecule/confess_widget.dart';
 import 'package:confess/screen/dashboard/widget/molecule/navbar.dart';
 import 'package:confess/screen/dashboard/widget/organism/dashboard_banner.dart';
@@ -53,7 +50,9 @@ class _MobileDashboardScreenState extends State<MobileDashboardScreen> {
                       childAspectRatio: 16 / 12,
                       crossAxisSpacing: 20,
                     ),
-                    itemBuilder: (context, index) => ConfessWidget(confession: confessionList[index]),
+                    itemBuilder: (context, index) => ConfessWidget(
+                      confession: confessionList[index],
+                    ),
                   ),
                 ),
                 error: (message) => Center(

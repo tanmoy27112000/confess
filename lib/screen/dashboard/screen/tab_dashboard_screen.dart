@@ -50,7 +50,9 @@ class _TabDashboardScreenState extends State<TabDashboardScreen> {
                       childAspectRatio: 16 / 12,
                       crossAxisSpacing: 20,
                     ),
-                    itemBuilder: (context, index) => ConfessWidget(confession: confessionList[index]),
+                    itemBuilder: (context, index) => ConfessWidget(
+                      confession: confessionList[index],
+                    ),
                   ),
                 ),
                 error: (message) => Center(

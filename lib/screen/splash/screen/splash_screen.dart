@@ -79,5 +79,5 @@ Future<void> createCompanyData(String assetPath) async {
     csvDataList.add(rowData);
   }
 
-  await DatabaseHelper.instance.createCompanyData(csvDataList);
+  // await DatabaseHelper.instance.createCompanyData(csvDataList);
 }

@@ -41,9 +41,9 @@ class ResponsiveBox extends StatelessWidget {
         width: ResponsiveValue<double>(
           context,
           conditionalValues: [
-            const Condition.equals(name: MOBILE, value: 450),
-            const Condition.between(start: 800, end: 1100, value: 800),
-            const Condition.between(start: 1000, end: 1980, value: 1000),
+            Condition.equals(name: MOBILE, value: 450),
+            Condition.between(start: 800, end: 1100, value: 800),
+            Condition.between(start: 1000, end: 1980, value: 1000),
           ],
         ).value,
         child: BouncingScrollWrapper.builder(

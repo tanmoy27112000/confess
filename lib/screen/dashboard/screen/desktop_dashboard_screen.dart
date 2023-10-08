@@ -51,8 +51,9 @@ class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
                       childAspectRatio: 16 / 12,
                       crossAxisSpacing: 10,
                     ),
-                    itemBuilder: (context, index) =>
-                        ConfessWidget(confession: confessionList[index]),
+                    itemBuilder: (context, index) => ConfessWidget(
+                      confession: confessionList[index],
+                    ),
                   ),
                 ),
                 error: (message) => Center(

@@ -38,7 +38,7 @@ class Ksnackbar {
         color: Kcolor.pink,
         title: title,
         message: title,
-        contentType: ContentType.help,
+        contentType: ContentType.success,
         inMaterialBanner: true,
       ),
     );

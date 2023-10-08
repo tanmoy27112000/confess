@@ -1,5 +1,4 @@
 import 'package:alice/alice.dart';
-import 'package:confess/helper/appwrite_helper.dart';
 import 'package:confess/l10n/l10n.dart';
 import 'package:confess/routes/router.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
@@ -9,8 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-final GlobalKey<ScaffoldMessengerState> snackbarKey =
-    GlobalKey<ScaffoldMessengerState>();
+final GlobalKey<ScaffoldMessengerState> snackbarKey = GlobalKey<ScaffoldMessengerState>();
 
 Alice alice = Alice(
   showNotification: false,
@@ -28,7 +26,6 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    AppwriteHelper.instance.init();
   }
 
   @override

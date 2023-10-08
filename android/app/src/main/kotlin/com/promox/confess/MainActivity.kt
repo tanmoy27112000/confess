@@ -1,4 +1,4 @@
-package com.promox.confess.confess
+package com.promox.confess
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -19,8 +19,8 @@ Future<dynamic> addConfessDialogbox() {
   final selectedGender = ValueNotifier<String>('');
 
   return ResponsiveBreakpoints.of(
-              alice.getNavigatorKey()!.currentState!.context)
-          .isMobile
+    alice.getNavigatorKey()!.currentState!.context,
+  ).isMobile
       ? showModalBottomSheet(
           isScrollControlled: true,
           context: alice.getNavigatorKey()!.currentState!.context,
@@ -81,7 +81,7 @@ Future<dynamic> addConfessDialogbox() {
                                 groupValue: value,
                                 onChanged: (value) {
                                   setState(() {
-                                    selectedGender.value = value ?? 'male';
+                                    selectedGender.value = value ?? 'Male';
                                   });
                                 },
                               ),
@@ -108,17 +108,14 @@ Future<dynamic> addConfessDialogbox() {
                               Ksnackbar.instance.showLoading(
                                 title: 'Adding your confession...',
                               );
-                              await DatabaseHelper.instance.addConfession(
-                                text: confessionController.text,
-                                gender: selectedGender.value,
-                              );
-                              router
-                                  .pop(alice.getNavigatorKey()!.currentContext);
+                              // await DatabaseHelper.instance.addConfession(
+                              //   text: confessionController.text,
+                              //   gender: selectedGender.value,
+                              //   company: companyNameController.text,
+                              // );
+                              router.pop(alice.getNavigatorKey()!.currentContext);
                               // ignore: use_build_context_synchronously
-                              final dashboardBloc = alice
-                                  .getNavigatorKey()!
-                                  .currentContext!
-                                  .read<DashboardBloc>();
+                              final dashboardBloc = alice.getNavigatorKey()!.currentContext!.read<DashboardBloc>();
                               // ignore: cascade_invocations
                               dashboardBloc.add(
                                 const DashboardEvent.getLatestConfession(),
@@ -155,8 +152,7 @@ Future<dynamic> addConfessDialogbox() {
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),
                           ),
-                          child:
-                              Image.asset('assets/images/rectangle_shap.png'),
+                          child: Image.asset('assets/images/rectangle_shap.png'),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -190,13 +186,11 @@ Future<dynamic> addConfessDialogbox() {
                                         color: Kcolor.white,
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           CircleAvatar(
                                             radius: 15,
-                                            backgroundColor:
-                                                const Color.fromRGBO(
+                                            backgroundColor: const Color.fromRGBO(
                                               180,
                                               198,
                                               241,
@@ -284,8 +278,7 @@ Future<dynamic> addConfessDialogbox() {
                                             ),
                                           ),
                                         ),
-                                        fillColor:
-                                            Color.fromRGBO(180, 198, 241, 0.37),
+                                        fillColor: Color.fromRGBO(180, 198, 241, 0.37),
                                         filled: true,
                                         isDense: true,
                                         border: OutlineInputBorder(),
@@ -317,8 +310,7 @@ Future<dynamic> addConfessDialogbox() {
                                             ),
                                           ),
                                         ),
-                                        fillColor:
-                                            Color.fromRGBO(180, 198, 241, 0.37),
+                                        fillColor: Color.fromRGBO(180, 198, 241, 0.37),
                                         filled: true,
                                         isDense: true,
                                         border: OutlineInputBorder(),
@@ -359,8 +351,7 @@ Future<dynamic> addConfessDialogbox() {
                                             ),
                                           ),
                                         ),
-                                        fillColor:
-                                            Color.fromRGBO(180, 198, 241, 0.37),
+                                        fillColor: Color.fromRGBO(180, 198, 241, 0.37),
                                         filled: true,
                                         isDense: true,
                                         border: OutlineInputBorder(),
@@ -403,19 +394,15 @@ Future<dynamic> addConfessDialogbox() {
                                               child: InkWell(
                                                 onTap: () {
                                                   setState(() {
-                                                    selectedGender.value =
-                                                        gender[0];
+                                                    selectedGender.value = gender[0];
                                                   });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
+                                                    borderRadius: BorderRadius.circular(
                                                       7,
                                                     ),
-                                                    color: selectedGender
-                                                                .value ==
-                                                            gender[0]
+                                                    color: selectedGender.value == gender[0]
                                                         ? Kcolor.darkblue
                                                         : const Color.fromRGBO(
                                                             180,
@@ -429,14 +416,11 @@ Future<dynamic> addConfessDialogbox() {
                                                     child: Text(
                                                       gender[0],
                                                       style: TextStyle(
-                                                        color: selectedGender
-                                                                    .value ==
-                                                                gender[0]
+                                                        color: selectedGender.value == gender[0]
                                                             ? Kcolor.white
                                                             : Kcolor.darkblue,
                                                         fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                   ),
@@ -448,19 +432,15 @@ Future<dynamic> addConfessDialogbox() {
                                               child: InkWell(
                                                 onTap: () {
                                                   setState(() {
-                                                    selectedGender.value =
-                                                        gender[1];
+                                                    selectedGender.value = gender[1];
                                                   });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
+                                                    borderRadius: BorderRadius.circular(
                                                       7,
                                                     ),
-                                                    color: selectedGender
-                                                                .value ==
-                                                            gender[1]
+                                                    color: selectedGender.value == gender[1]
                                                         ? Kcolor.darkblue
                                                         : const Color.fromRGBO(
                                                             180,
@@ -474,14 +454,11 @@ Future<dynamic> addConfessDialogbox() {
                                                     child: Text(
                                                       gender[1],
                                                       style: TextStyle(
-                                                        color: selectedGender
-                                                                    .value ==
-                                                                gender[1]
+                                                        color: selectedGender.value == gender[1]
                                                             ? Kcolor.white
                                                             : Kcolor.darkblue,
                                                         fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                   ),
@@ -511,23 +488,20 @@ Future<dynamic> addConfessDialogbox() {
                                       Ksnackbar.instance.showLoading(
                                         title: 'Adding your confession...',
                                       );
-                                      await DatabaseHelper.instance
-                                          .addConfession(
+                                      await DatabaseHelper.instance.addConfession(
                                         text: confessionController.text,
-                                        gender: selectedGender.value,
+                                        gender: selectedGender.value == 'Male' ? 0 : 1,
+                                        company: companyNameController.text,
                                       );
                                       router.pop(
                                         alice.getNavigatorKey()!.currentContext,
                                       );
                                       // ignore: use_build_context_synchronously
-                                      final dashboardBloc = alice
-                                          .getNavigatorKey()!
-                                          .currentContext!
-                                          .read<DashboardBloc>();
+                                      final dashboardBloc =
+                                          alice.getNavigatorKey()!.currentContext!.read<DashboardBloc>();
                                       // ignore: cascade_invocations
                                       dashboardBloc.add(
-                                        const DashboardEvent
-                                            .getLatestConfession(),
+                                        const DashboardEvent.getLatestConfession(),
                                       );
                                     },
                                     child: Text(

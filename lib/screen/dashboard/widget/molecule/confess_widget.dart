@@ -1,7 +1,7 @@
-import 'package:appwrite/models.dart';
 import 'package:confess/constant/color.dart';
 import 'package:confess/constant/date_formatter.dart';
 import 'package:confess/gen/assets.gen.dart';
+import 'package:confess/model/confession_model/confession_model.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -11,7 +11,7 @@ class ConfessWidget extends StatelessWidget {
     super.key,
   });
 
-  final Document confession;
+  final ConfessionModel confession;
 
   @override
   Widget build(BuildContext context) {
@@ -43,22 +43,28 @@ class ConfessWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Text(
-                        confession.data['confession'] as String,
-                        style: TextStyle(
-                          fontSize: ResponsiveBreakpoints.of(context).isMobile ? 18 : 10,
-                          color: Kcolor.purple,
-                          fontWeight: FontWeight.bold,
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            confession.confession,
+                            style: TextStyle(
+                              fontSize: ResponsiveBreakpoints.of(context).isMobile ? 18 : 10,
+                              color: Kcolor.purple,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 5),
+            //like icon
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -67,12 +73,13 @@ class ConfessWidget extends StatelessWidget {
                   backgroundColor: const Color(0xffFF6AC3),
                   child: Assets.icons.anonymous.image(width: 15),
                 ),
+                const SizedBox(width: 5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       KdateFormatter.ddMMMyyyy.format(
-                        DateTime.parse(confession.data['createdOn'] as String),
+                        DateTime.parse(confession.createdAt.toString()),
                       ),
                       style: TextStyle(
                         fontSize: ResponsiveBreakpoints.of(context).isMobile ? 16 : 10,
@@ -82,7 +89,7 @@ class ConfessWidget extends StatelessWidget {
                     ),
                     Text(
                       KdateFormatter.hhmma.format(
-                        DateTime.parse(confession.data['createdOn'] as String),
+                        DateTime.parse(confession.createdAt.toString()),
                       ),
                       style: TextStyle(
                         fontSize: ResponsiveBreakpoints.of(context).isMobile ? 16 : 10,
