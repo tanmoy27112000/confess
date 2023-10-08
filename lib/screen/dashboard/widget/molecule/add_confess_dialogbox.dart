@@ -108,11 +108,11 @@ Future<dynamic> addConfessDialogbox() {
                               Ksnackbar.instance.showLoading(
                                 title: 'Adding your confession...',
                               );
-                              // await DatabaseHelper.instance.addConfession(
-                              //   text: confessionController.text,
-                              //   gender: selectedGender.value,
-                              //   company: companyNameController.text,
-                              // );
+                              await DatabaseHelper.instance.addConfession(
+                                text: confessionController.text,
+                                gender: selectedGender.value == 'Male' ? 0 : 1,
+                                company: companyNameController.text,
+                              );
                               router.pop(alice.getNavigatorKey()!.currentContext);
                               // ignore: use_build_context_synchronously
                               final dashboardBloc = alice.getNavigatorKey()!.currentContext!.read<DashboardBloc>();

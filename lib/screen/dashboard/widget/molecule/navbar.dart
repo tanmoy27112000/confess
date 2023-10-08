@@ -192,7 +192,7 @@ class _NavbarState extends State<Navbar> {
             builder: (isHovered) {
               return InkWell(
                 onTap: () {
-                  AuthHelper.instance.login();
+                  // AuthHelper.instance.login();
                 },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
