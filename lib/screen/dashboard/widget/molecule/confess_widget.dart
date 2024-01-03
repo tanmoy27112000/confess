@@ -27,7 +27,7 @@ class ConfessWidget extends StatelessWidget {
             color: Colors.black12,
             blurRadius: 10,
             offset: Offset(0, 5),
-          )
+          ),
         ],
       ),
       child: Padding(
@@ -60,7 +60,7 @@ class ConfessWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                         child: Text(
-                          ' - ${confession.companyName}',
+                          ' - ${confession.age} | ${confession.gender == 0 ? 'Male' : 'Female'}',
                           style: TextStyle(
                             fontSize: ResponsiveBreakpoints.of(context).isMobile ? 16 : 10,
                             color: Kcolor.violet,

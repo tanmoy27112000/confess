@@ -13,6 +13,7 @@ final router = GoRouter(
   debugLogDiagnostics: true,
   navigatorKey: navigatorKey,
   initialLocation: SplashScreen.routeName,
+  redirect: (_,__)=>DashboardScreen.routeName,
   restorationScopeId: 'confess',
   routes: [
     GoRoute(

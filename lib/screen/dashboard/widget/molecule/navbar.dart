@@ -60,7 +60,7 @@ class _NavbarState extends State<Navbar> {
                   color: Colors.black12,
                   blurRadius: 10,
                   offset: Offset(0, 5),
-                )
+                ),
               ],
               color: Colors.white,
               borderRadius: BorderRadius.all(
@@ -89,7 +89,8 @@ class _NavbarState extends State<Navbar> {
             ),
           ),
           const Spacer(),
-          if (!ResponsiveBreakpoints.of(context).isMobile)
+          if (false)
+            // ignore: dead_code
             Card(
               elevation: 5,
               shape: RoundedRectangleBorder(
@@ -155,7 +156,7 @@ class _NavbarState extends State<Navbar> {
                               color: Colors.black12,
                               blurRadius: 10,
                               offset: Offset(0, 5),
-                            )
+                            ),
                           ],
                         ),
                         suggestionItemDecoration: const BoxDecoration(
@@ -229,7 +230,19 @@ class _NavbarState extends State<Navbar> {
                                     height: 0,
                                   ),
                                 ),
-                                const Icon(Icons.arrow_drop_down_rounded)
+                                InkWell(
+                                  onTap: () {
+                                    AuthHelper.instance.signOut();
+                                  },
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8),
+                                    child: Icon(
+                                      Icons.power_settings_new_rounded,
+                                      size: 15,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

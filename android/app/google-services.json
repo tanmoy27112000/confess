@@ -1,51 +1,26 @@
 {
   "project_info": {
-    "project_number": "642988925358",
-    "project_id": "confeife",
-    "storage_bucket": "confeife.appspot.com"
+    "project_number": "500945831833",
+    "project_id": "confess-272ce",
+    "storage_bucket": "confess-272ce.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:642988925358:android:4ef7da62f045286a4e283f",
+        "mobilesdk_app_id": "1:500945831833:android:01e5792d9f49700e2f3508",
         "android_client_info": {
           "package_name": "com.promox.confess"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "642988925358-ffk8oljk6l4sqokfk43o8p9prpkpprm0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.promox.confess",
-            "certificate_hash": "2a28947fc977b13fb8c397272999d2558de78b72"
-          }
-        },
-        {
-          "client_id": "642988925358-kbukgjkpd1k0ia1t6i85p3pahslp7vga.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBwOrwsGfebwnlLDalz64VmwvESZ7V1hes"
+          "current_key": "AIzaSyCc5e5s5A1YxwOwJSRZnrKsht7zROLf4d0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "642988925358-kbukgjkpd1k0ia1t6i85p3pahslp7vga.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "642988925358-4m8g3ek80ssl9c3sgc0ferur61s2r7d3.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.promox.confess"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

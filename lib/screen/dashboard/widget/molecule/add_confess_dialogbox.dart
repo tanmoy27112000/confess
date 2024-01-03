@@ -15,7 +15,7 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 Future<dynamic> addConfessDialogbox() {
   final nameController = TextEditingController()..text = PrefsHelper.instance.userData?.displayName ?? '';
   final confessionController = TextEditingController();
-  final companyNameController = TextEditingController();
+  final ageController = TextEditingController();
 
   final gender = <String>['Male', 'Female'];
   final selectedGender = ValueNotifier<String>('');
@@ -57,7 +57,7 @@ Future<dynamic> addConfessDialogbox() {
                     const SizedBox(height: 20),
                     confessionField(confessionController),
                     const SizedBox(height: 20),
-                    companyField(companyNameController),
+                    companyField(ageController),
                     const SizedBox(height: 20),
                     Row(
                       children: [
@@ -127,7 +127,7 @@ Future<dynamic> addConfessDialogbox() {
                               await DatabaseHelper.instance.addConfession(
                                 text: confessionController.text,
                                 gender: selectedGender.value == 'Male' ? 0 : 1,
-                                company: companyNameController.text,
+                                age: ageController.text,
                                 name: nameController.text,
                                 uid: PrefsHelper.instance.userData?.uid ?? '',
                               );
@@ -266,7 +266,7 @@ Future<dynamic> addConfessDialogbox() {
                                     const SizedBox(height: 20),
                                     confessionField(confessionController),
                                     const SizedBox(height: 20),
-                                    companyField(companyNameController),
+                                    companyField(ageController),
                                     const SizedBox(height: 22),
                                     Row(
                                       children: [
@@ -402,7 +402,7 @@ Future<dynamic> addConfessDialogbox() {
                                         text: confessionController.text,
                                         gender: selectedGender.value == 'Male' ? 0 : 1,
                                         name: nameController.text,
-                                        company: companyNameController.text,
+                                        age: ageController.text,
                                         uid: PrefsHelper.instance.userData?.uid ?? '',
                                       );
                                       router.pop(
@@ -439,13 +439,13 @@ Future<dynamic> addConfessDialogbox() {
         );
 }
 
-Column companyField(TextEditingController companyNameController) {
+Column companyField(TextEditingController ageController) {
   return Column(
     children: <Widget>[
       Row(
         children: [
           Text(
-            'Company Name ',
+            'Age (in number) ',
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -464,7 +464,7 @@ Column companyField(TextEditingController companyNameController) {
       ),
       const SizedBox(height: 8),
       TextField(
-        controller: companyNameController,
+        controller: ageController,
         decoration: const InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(

@@ -26,7 +26,7 @@ class ConfessionModel with _$ConfessionModel {
     @JsonKey(name: 'createdAt', fromJson: _sendAtFromJson) required DateTime createdAt,
     required int likes,
     required int gender,
-    required String companyName,
+    required int age,
     required String email,
   }) = _ConfessionModel;
 

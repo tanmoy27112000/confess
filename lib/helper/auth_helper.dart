@@ -66,4 +66,10 @@ class AuthHelper {
     }
     return user;
   }
+
+  void signOut() {
+    _googleSignIn.signOut();
+    PrefsHelper.instance.clear();
+    isLoggedIn.value = false;
+  }
 }

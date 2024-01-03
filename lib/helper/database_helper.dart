@@ -33,7 +33,7 @@ class DatabaseHelper {
   Future<void> addConfession({
     required String text,
     required int gender,
-    required String company,
+    required String age,
     required String name,
     required String uid,
   }) async {
@@ -43,7 +43,7 @@ class DatabaseHelper {
         'confession': text,
         'gender': gender,
         'createdAt': Timestamp.now(),
-        'companyName': company,
+        'age': int.parse(age),
         'likes': 0,
         'email': '',
         'name': name,

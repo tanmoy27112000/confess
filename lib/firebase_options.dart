@@ -47,31 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAkLXixpR2W3B1zEo5xVjmgUq63NXezmA0',
-    appId: '1:642988925358:web:9777befbe4f90a6c4e283f',
-    messagingSenderId: '642988925358',
-    projectId: 'confeife',
-    authDomain: 'confeife.firebaseapp.com',
-    storageBucket: 'confeife.appspot.com',
-    measurementId: 'G-SN9ZCRNQCT',
+    apiKey: 'AIzaSyBJKnv2ned1lbER0sBM09S3QwD8IHWhx04',
+    appId: '1:500945831833:web:fd4df5b45aa3bb3f2f3508',
+    messagingSenderId: '500945831833',
+    projectId: 'confess-272ce',
+    authDomain: 'confess-272ce.firebaseapp.com',
+    storageBucket: 'confess-272ce.appspot.com',
+    measurementId: 'G-01M42XKYSK',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBwOrwsGfebwnlLDalz64VmwvESZ7V1hes',
-    appId: '1:642988925358:android:4ef7da62f045286a4e283f',
-    messagingSenderId: '642988925358',
-    projectId: 'confeife',
-    storageBucket: 'confeife.appspot.com',
+    apiKey: 'AIzaSyCc5e5s5A1YxwOwJSRZnrKsht7zROLf4d0',
+    appId: '1:500945831833:android:01e5792d9f49700e2f3508',
+    messagingSenderId: '500945831833',
+    projectId: 'confess-272ce',
+    storageBucket: 'confess-272ce.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCD6v7w-gAN2sQUxTeOOa_RVFrfaV-4uC0',
-    appId: '1:642988925358:ios:ca9bedb0615a94a34e283f',
-    messagingSenderId: '642988925358',
-    projectId: 'confeife',
-    storageBucket: 'confeife.appspot.com',
-    androidClientId: '642988925358-ffk8oljk6l4sqokfk43o8p9prpkpprm0.apps.googleusercontent.com',
-    iosClientId: '642988925358-4m8g3ek80ssl9c3sgc0ferur61s2r7d3.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCJqk0awE_oy9dxla47LEU2XlYH60r67pg',
+    appId: '1:500945831833:ios:7834c095aa8be5962f3508',
+    messagingSenderId: '500945831833',
+    projectId: 'confess-272ce',
+    storageBucket: 'confess-272ce.appspot.com',
     iosBundleId: 'com.promox.confess',
   );
 }
