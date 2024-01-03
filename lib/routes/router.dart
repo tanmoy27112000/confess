@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+//navigator key
+final navigatorKey = GlobalKey<NavigatorState>();
 
 // GoRouter configuration
 final router = GoRouter(
   debugLogDiagnostics: true,
-  navigatorKey: alice.getNavigatorKey(),
+  navigatorKey: navigatorKey,
   initialLocation: SplashScreen.routeName,
   restorationScopeId: 'confess',
   routes: [

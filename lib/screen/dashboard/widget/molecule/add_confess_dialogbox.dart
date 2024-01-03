@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously, cascade_invocations
 
-import 'package:confess/app/view/app.dart';
 import 'package:confess/constant/color.dart';
 import 'package:confess/constant/snackbar.dart';
 import 'package:confess/helper/database_helper.dart';
@@ -22,11 +21,11 @@ Future<dynamic> addConfessDialogbox() {
   final selectedGender = ValueNotifier<String>('');
 
   return ResponsiveBreakpoints.of(
-    alice.getNavigatorKey()!.currentState!.context,
+    navigatorKey.currentState!.context,
   ).isMobile
       ? showModalBottomSheet(
           isScrollControlled: true,
-          context: alice.getNavigatorKey()!.currentState!.context,
+          context: navigatorKey.currentState!.context,
           builder: (context) => StatefulBuilder(
             builder: (context, setState) {
               return Padding(
@@ -132,18 +131,18 @@ Future<dynamic> addConfessDialogbox() {
                                 name: nameController.text,
                                 uid: PrefsHelper.instance.userData?.uid ?? '',
                               );
-                              router.pop(alice.getNavigatorKey()!.currentContext);
+                              router.pop(navigatorKey.currentContext);
                               // ignore: use_build_context_synchronously
-                              final dashboardBloc = alice.getNavigatorKey()!.currentContext!.read<DashboardBloc>();
+                              final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
                               // ignore: cascade_invocations
                               dashboardBloc.add(
                                 const DashboardEvent.getLatestConfession(),
                               );
                             },
-                          )
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               );
@@ -152,7 +151,7 @@ Future<dynamic> addConfessDialogbox() {
         )
       : showDialog(
           barrierColor: const Color.fromRGBO(0, 0, 0, 0.66),
-          context: alice.getNavigatorKey()!.currentState!.context,
+          context: navigatorKey.currentState!.context,
           builder: (context) => StatefulBuilder(
             builder: (context, setState) {
               return AlertDialog(
@@ -233,7 +232,7 @@ Future<dynamic> addConfessDialogbox() {
                                         ],
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                               const SizedBox(
@@ -257,7 +256,7 @@ Future<dynamic> addConfessDialogbox() {
                                       color: Color(0x3F000000),
                                       blurRadius: 250,
                                       offset: Offset(0, 4),
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: Column(
@@ -375,7 +374,7 @@ Future<dynamic> addConfessDialogbox() {
                                                   ),
                                                 ),
                                               ),
-                                            )
+                                            ),
                                           ],
                                         );
                                       },
@@ -407,11 +406,10 @@ Future<dynamic> addConfessDialogbox() {
                                         uid: PrefsHelper.instance.userData?.uid ?? '',
                                       );
                                       router.pop(
-                                        alice.getNavigatorKey()!.currentContext,
+                                        navigatorKey.currentContext,
                                       );
 
-                                      final dashboardBloc =
-                                          alice.getNavigatorKey()!.currentContext!.read<DashboardBloc>();
+                                      final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
 
                                       dashboardBloc.add(
                                         const DashboardEvent.getLatestConfession(),

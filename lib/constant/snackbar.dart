@@ -1,6 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:confess/app/view/app.dart';
 import 'package:confess/constant/color.dart';
+import 'package:confess/routes/router.dart';
 import 'package:flutter/material.dart';
 
 class Ksnackbar {
@@ -23,7 +23,7 @@ class Ksnackbar {
       ),
     );
 
-    ScaffoldMessenger.of(alice.getNavigatorKey()!.currentContext!)
+    ScaffoldMessenger.of(navigatorKey.currentContext!)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);
   }
@@ -43,7 +43,7 @@ class Ksnackbar {
       ),
     );
 
-    ScaffoldMessenger.of(alice.getNavigatorKey()!.currentContext!)
+    ScaffoldMessenger.of(navigatorKey.currentContext!)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);
   }
@@ -63,7 +63,7 @@ class Ksnackbar {
       ),
     );
 
-    ScaffoldMessenger.of(alice.getNavigatorKey()!.currentContext!)
+    ScaffoldMessenger.of(navigatorKey.currentContext!)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);
   }
