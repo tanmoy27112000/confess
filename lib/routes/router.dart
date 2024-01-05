@@ -1,10 +1,9 @@
-import 'package:confess/app/view/app.dart';
 import 'package:confess/screen/dashboard/screen/dashboard_screen.dart';
 import 'package:confess/screen/splash/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
 //navigator key
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -13,7 +12,6 @@ final router = GoRouter(
   debugLogDiagnostics: true,
   navigatorKey: navigatorKey,
   initialLocation: SplashScreen.routeName,
-  redirect: (_,__)=>DashboardScreen.routeName,
   restorationScopeId: 'confess',
   routes: [
     GoRoute(

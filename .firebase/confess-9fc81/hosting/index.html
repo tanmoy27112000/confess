@@ -64,8 +64,26 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <style>
+    body{
+      background-color: #faedff;
+      height: 100vh;
+      width: 100vw;
+      margin: 0px;
+    }
+
+    .main_content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      transition: opacity 0.4s ease-in-out;
+
+    }
+  </style>
   <script>
-    const serviceWorkerVersion = "2746137958";
+    const serviceWorkerVersion = "2582395717";
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -78,9 +96,14 @@
       document.body.append(scriptTag);
     }
 
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+      }
+
     if ('serviceWorker' in navigator) {
       // Service workers are supported. Use them.
       window.addEventListener('load', function () {
+        var loaderContent = document.querySelector('#loader-content');
         // Wait for registration to finish before dropping the <script> tag.
         // Otherwise, the browser will load the script multiple times,
         // potentially different versions.
@@ -88,9 +111,11 @@
         navigator.serviceWorker.register(serviceWorkerUrl)
           .then((reg) => {
             function waitForActivation(serviceWorker) {
-              serviceWorker.addEventListener('statechange', () => {
+              serviceWorker.addEventListener('statechange', async () => {
                 if (serviceWorker.state == 'activated') {
                   console.log('Installed new service worker.');
+                  loaderContent.style.opacity = "0";
+                  await delay(400);
                   loadMainDartJs();
                 }
               });
@@ -128,6 +153,9 @@
       loadMainDartJs();
     }
   </script>
+  <div class="main_content" id="loader-content">
+    <img src="confess_logo.png" alt="My app logo">
+  </div>
 </body>
 
 </html>

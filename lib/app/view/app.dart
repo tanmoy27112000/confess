@@ -3,6 +3,7 @@ import 'package:confess/l10n/l10n.dart';
 import 'package:confess/routes/router.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -56,7 +57,9 @@ class _AppState extends State<App> {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-      ),
+      ).animate().fadeIn(
+            duration: 400.ms,
+          ),
     );
   }
 }
