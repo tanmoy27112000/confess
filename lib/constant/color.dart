@@ -9,5 +9,5 @@ class Kcolor {
   static Color darkblue = const Color(0xff4D69EE);
   static Color lightblue = const Color(0xffB8CAF6);
   static Color purple = const Color(0xff1E0E62);
-  static Color violet = Color(0xff4D69EE);
+  static Color violet = const Color(0xff4D69EE);
 }

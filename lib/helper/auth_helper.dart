@@ -40,7 +40,7 @@ class AuthHelper {
       final userCredential = await auth.signInWithPopup(authProvider);
       user = userCredential.user;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
 
     if (user != null) {

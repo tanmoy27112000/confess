@@ -2,6 +2,8 @@
 //
 //     final confessionModel = confessionModelFromJson(jsonString);
 
+// ignore_for_file: invalid_annotation_target
+
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';

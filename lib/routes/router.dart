@@ -13,17 +13,32 @@ final router = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: SplashScreen.routeName,
   restorationScopeId: 'confess',
+  errorBuilder: (context, state) => const ResponsiveBox(
+    widget: Scaffold(
+      body: Center(
+        child: Text('404'),
+      ),
+    ),
+  ),
   routes: [
     GoRoute(
       path: SplashScreen.routeName,
       builder: (context, state) => const ResponsiveBox(widget: SplashScreen()),
+      routes: [
+        GoRoute(
+          path: DashboardScreen.routeName.replaceAll('/', '').trim(),
+          builder: (context, state) => const ResponsiveBox(
+            widget: DashboardScreen(),
+          ),
+        ),
+      ],
     ),
-    GoRoute(
-      path: DashboardScreen.routeName,
-      builder: (context, state) => const ResponsiveBox(
-        widget: DashboardScreen(),
-      ),
-    ),
+    // GoRoute(
+    //   path: DashboardScreen.routeName,
+    //   builder: (context, state) => const ResponsiveBox(
+    //     widget: DashboardScreen(),
+    //   ),
+    // ),
   ],
 );
 

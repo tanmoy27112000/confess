@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DashboardAtom extends StatelessWidget {
-  const DashboardAtom({Key? key}) : super(key: key);
+  const DashboardAtom({super.key});
 
   @override
   Widget build(BuildContext context) {

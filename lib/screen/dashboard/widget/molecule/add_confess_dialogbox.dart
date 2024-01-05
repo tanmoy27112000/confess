@@ -132,9 +132,7 @@ Future<dynamic> addConfessDialogbox() {
                                 uid: PrefsHelper.instance.userData?.uid ?? '',
                               );
                               router.pop(navigatorKey.currentContext);
-                              // ignore: use_build_context_synchronously
                               final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
-                              // ignore: cascade_invocations
                               dashboardBloc.add(
                                 const DashboardEvent.getLatestConfession(),
                               );
@@ -155,7 +153,7 @@ Future<dynamic> addConfessDialogbox() {
           builder: (context) => StatefulBuilder(
             builder: (context, setState) {
               return AlertDialog(
-                contentPadding: const EdgeInsets.all(0),
+                contentPadding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

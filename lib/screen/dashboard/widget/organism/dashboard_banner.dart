@@ -64,7 +64,7 @@ class DashboardBanner extends StatelessWidget {
                                   color: Colors.black.withOpacity(0.2),
                                   blurRadius: 10,
                                   offset: const Offset(0, 5),
-                                )
+                                ),
                               ]
                             : null,
                         gradient: const LinearGradient(
@@ -85,7 +85,7 @@ class DashboardBanner extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

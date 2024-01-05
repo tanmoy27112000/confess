@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SplashAtom extends StatelessWidget {
-  const SplashAtom({Key? key}) : super(key: key);
+  const SplashAtom({super.key});
 
   @override
   Widget build(BuildContext context) {

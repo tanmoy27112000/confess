@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
 
 class BtnFilled extends StatelessWidget {
-  const BtnFilled({super.key, required this.title, required this.onTap});
+  const BtnFilled({required this.title, required this.onTap, super.key});
   final String title;
   final GestureTapCallback onTap;
 

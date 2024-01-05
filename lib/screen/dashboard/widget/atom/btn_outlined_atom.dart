@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
 
 class BtnOutline extends StatelessWidget {
-  const BtnOutline({super.key, required this.title, required this.onTap});
+  const BtnOutline({required this.title, required this.onTap, super.key});
   final String title;
   final GestureTapCallback onTap;
 
