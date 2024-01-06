@@ -11,11 +11,15 @@ import 'package:confess/screen/dashboard/widget/atom/btn_outlined_atom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:simple_chips_input/simple_chips_input.dart';
 
 Future<dynamic> addConfessDialogbox() {
   final nameController = TextEditingController()..text = PrefsHelper.instance.userData?.displayName ?? '';
   final confessionController = TextEditingController();
   final ageController = TextEditingController();
+
+  //form key
+  final formKey = GlobalKey<FormState>();
 
   final gender = <String>['Male', 'Female'];
   final selectedGender = ValueNotifier<String>('');
@@ -57,7 +61,12 @@ Future<dynamic> addConfessDialogbox() {
                     const SizedBox(height: 20),
                     confessionField(confessionController),
                     const SizedBox(height: 20),
-                    companyField(ageController),
+                    ageField(ageController),
+                    const SizedBox(height: 20),
+                    tagField(
+                      ageController,
+                      formKey: formKey,
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
@@ -121,18 +130,21 @@ Future<dynamic> addConfessDialogbox() {
                           BtnFilled(
                             title: 'Add',
                             onTap: () async {
+                              final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
+                              formKey.currentState!.save();
                               Ksnackbar.instance.showLoading(
                                 title: 'Adding your confession...',
                               );
+                              router.pop(navigatorKey.currentContext);
                               await DatabaseHelper.instance.addConfession(
                                 text: confessionController.text,
                                 gender: selectedGender.value == 'Male' ? 0 : 1,
                                 age: ageController.text,
                                 name: nameController.text,
                                 uid: PrefsHelper.instance.userData?.uid ?? '',
+                                tags: dashboardBloc.tags,
                               );
-                              router.pop(navigatorKey.currentContext);
-                              final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
+
                               dashboardBloc.add(
                                 const DashboardEvent.getLatestConfession(),
                               );
@@ -155,7 +167,7 @@ Future<dynamic> addConfessDialogbox() {
               return AlertDialog(
                 contentPadding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 content: SizedBox(
                   width: 450,
@@ -264,7 +276,12 @@ Future<dynamic> addConfessDialogbox() {
                                     const SizedBox(height: 20),
                                     confessionField(confessionController),
                                     const SizedBox(height: 20),
-                                    companyField(ageController),
+                                    ageField(ageController),
+                                    const SizedBox(height: 22),
+                                    tagField(
+                                      ageController,
+                                      formKey: formKey,
+                                    ),
                                     const SizedBox(height: 22),
                                     Row(
                                       children: [
@@ -396,18 +413,19 @@ Future<dynamic> addConfessDialogbox() {
                                       Ksnackbar.instance.showLoading(
                                         title: 'Adding your confession...',
                                       );
+                                      router.pop(
+                                        navigatorKey.currentContext,
+                                      );
+                                      final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
+                                      formKey.currentState!.save();
                                       await DatabaseHelper.instance.addConfession(
                                         text: confessionController.text,
                                         gender: selectedGender.value == 'Male' ? 0 : 1,
                                         name: nameController.text,
                                         age: ageController.text,
                                         uid: PrefsHelper.instance.userData?.uid ?? '',
+                                        tags: dashboardBloc.tags,
                                       );
-                                      router.pop(
-                                        navigatorKey.currentContext,
-                                      );
-
-                                      final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
 
                                       dashboardBloc.add(
                                         const DashboardEvent.getLatestConfession(),
@@ -437,7 +455,39 @@ Future<dynamic> addConfessDialogbox() {
         );
 }
 
-Column companyField(TextEditingController ageController) {
+Column tagField(
+  TextEditingController ageController, {
+  required GlobalKey<FormState> formKey,
+}) {
+  return Column(
+    children: <Widget>[
+      Row(
+        children: [
+          Text(
+            'Tags i.e (Love, Office romance, etc)',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Kcolor.black,
+            ),
+          ),
+          Text(
+            '(Optional)',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: Kcolor.darkblue,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 8),
+      SimpleChipsInputWidget(formKey: formKey),
+    ],
+  );
+}
+
+Column ageField(TextEditingController ageController) {
   return Column(
     children: <Widget>[
       Row(
@@ -501,7 +551,7 @@ Column confessionField(TextEditingController confessionController) {
         controller: confessionController,
         keyboardType: TextInputType.multiline,
         maxLines: null,
-        minLines: 6,
+        minLines: 4,
         decoration: const InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -568,4 +618,67 @@ Column nameField(TextEditingController nameController) {
       ),
     ],
   );
+}
+
+class SimpleChipsInputWidget extends StatefulWidget {
+  const SimpleChipsInputWidget({
+    required this.formKey,
+    super.key,
+  });
+  final GlobalKey<FormState> formKey;
+
+  @override
+  State<SimpleChipsInputWidget> createState() => _SimpleChipsInputWidgetState();
+}
+
+class _SimpleChipsInputWidgetState extends State<SimpleChipsInputWidget> {
+  final FocusNode focusNode = FocusNode();
+  final TextFormFieldStyle style = const TextFormFieldStyle(
+    keyboardType: TextInputType.phone,
+    cursorColor: Colors.blue,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: SimpleChipsInput(
+            separatorCharacter: ',',
+            focusNode: focusNode,
+            formKey: widget.formKey,
+            textFormFieldStyle: style,
+            onChipDeleted: (p0, p1) {},
+            onSaved: (p0) {
+              final dashboardBloc = navigatorKey.currentContext!.read<DashboardBloc>();
+              dashboardBloc.tags = p0.split(',').where((element) => element.isNotEmpty).toList();
+            },
+            chipTextStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+            deleteIcon: const Padding(
+              padding: EdgeInsets.only(left: 8),
+              child: Icon(
+                Icons.delete,
+                size: 14,
+                color: Colors.white,
+              ),
+            ),
+            widgetContainerDecoration: BoxDecoration(
+              color: const Color.fromRGBO(180, 198, 241, 0.37),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            chipContainerDecoration: BoxDecoration(
+              color: Kcolor.darkblue,
+              border: Border.all(),
+              borderRadius: BorderRadius.circular(50),
+            ),
+            placeChipsSectionAbove: false,
+          ),
+        ),
+      ],
+    );
+  }
 }

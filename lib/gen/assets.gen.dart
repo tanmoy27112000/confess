@@ -58,7 +58,7 @@ class Assets {
   static const $AssetsImagesGen images = $AssetsImagesGen();
 
   /// List of all assets
-  List<String> get values => [companyName];
+  static List<String> get values => [companyName];
 }
 
 class AssetGenImage {

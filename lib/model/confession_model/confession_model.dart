@@ -30,6 +30,7 @@ class ConfessionModel with _$ConfessionModel {
     required int gender,
     required int age,
     required String email,
+    required List<String> tags,
   }) = _ConfessionModel;
 
   factory ConfessionModel.fromJson(Map<String, dynamic> json) => _$ConfessionModelFromJson(json);

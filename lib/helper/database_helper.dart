@@ -36,6 +36,7 @@ class DatabaseHelper {
     required String age,
     required String name,
     required String uid,
+    required List<String> tags,
   }) async {
     await db.collection(confessionCollection).add(
       // documentId: ID.unique(),
@@ -48,6 +49,7 @@ class DatabaseHelper {
         'email': '',
         'name': name,
         'uid': uid,
+        'tags': tags,
       },
     );
   }

@@ -54,6 +54,26 @@ class ConfessWidget extends StatelessWidget {
                         ),
                       ),
                     ),
+                    //create a rich text widget with tags having different color
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                      child: RichText(
+                        text: TextSpan(
+                          children: confession.tags
+                              .map(
+                                (e) => TextSpan(
+                                  text: '#$e ',
+                                  style: TextStyle(
+                                    color: generateColorFromString(e),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                    ),
                     const Spacer(),
                     Align(
                       alignment: Alignment.bottomRight,
@@ -115,5 +135,9 @@ class ConfessWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color generateColorFromString(String join) {
+    return Colors.primaries[join.hashCode % Colors.primaries.length];
   }
 }
