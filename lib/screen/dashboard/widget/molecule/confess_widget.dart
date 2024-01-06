@@ -3,6 +3,7 @@ import 'package:confess/constant/date_formatter.dart';
 import 'package:confess/gen/assets.gen.dart';
 import 'package:confess/model/confession_model/confession_model.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ConfessWidget extends StatelessWidget {
@@ -64,8 +65,9 @@ class ConfessWidget extends StatelessWidget {
                                 (e) => TextSpan(
                                   text: '#$e ',
                                   style: TextStyle(
+                                    fontFamily: GoogleFonts.poppins().fontFamily,
                                     color: generateColorFromString(e),
-                                    fontSize: 10,
+                                    fontSize: ResponsiveBreakpoints.of(context).isMobile ? 16 : 10,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
