@@ -3,6 +3,7 @@ import 'package:confess/screen/dashboard/widget/molecule/confess_widget.dart';
 import 'package:confess/screen/dashboard/widget/molecule/navbar.dart';
 import 'package:confess/screen/dashboard/widget/organism/dashboard_banner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -49,7 +50,10 @@ class _TabDashboardScreenState extends State<TabDashboardScreen> {
                     crossAxisCount: 3,
                     itemBuilder: (context, index) => ConfessWidget(
                       confession: confessionList[index],
-                    ),
+                    )
+                        .animate(delay: const Duration(milliseconds: 400))
+                        .fadeIn(duration: const Duration(milliseconds: 500))
+                        .moveY(begin: 16, end: 0),
                   ),
                 ),
                 error: (message) => Center(
