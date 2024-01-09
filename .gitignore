@@ -132,6 +132,7 @@ app.*.map.json
 
 #firebase
 web/firebaseConfig.js
+lib/firebase_options.dart
 
 
 
