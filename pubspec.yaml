@@ -41,7 +41,6 @@ dependencies:
   simple_chips_input: ^1.2.0
   simple_gradient_text: ^1.2.4
   substring_highlight: ^1.0.33
-  url_strategy: ^0.2.0
 
 dev_dependencies:
   bloc_test: ^9.1.3
