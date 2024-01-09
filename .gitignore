@@ -130,6 +130,10 @@ app.*.map.json
 *.freezed.dart
 *.g.dart
 
+#firebase
+web/firebaseConfig.js
+
+
 
 .env
 .firebase/hosting.YnVpbGQvd2Vi.cache

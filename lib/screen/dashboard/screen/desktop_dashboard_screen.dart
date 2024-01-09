@@ -3,11 +3,13 @@ import 'package:confess/screen/dashboard/widget/molecule/confess_widget.dart';
 import 'package:confess/screen/dashboard/widget/molecule/navbar.dart';
 import 'package:confess/screen/dashboard/widget/organism/dashboard_banner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class DesktopDashboardScreen extends StatefulWidget {
   const DesktopDashboardScreen({super.key});
+
   //route name
   static const String routeName = '/dashboard';
 
@@ -17,6 +19,7 @@ class DesktopDashboardScreen extends StatefulWidget {
 
 class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
   late DashboardBloc dashboardBloc;
+
   @override
   void initState() {
     dashboardBloc = context.read<DashboardBloc>();
@@ -41,19 +44,19 @@ class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
                   child: CircularProgressIndicator.adaptive(),
                 ),
                 loaded: (confessionList) => Center(
-                  child: ResponsiveGridView.builder(
+                  child: MasonryGridView.count(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: confessionList.length,
-                    gridDelegate: const ResponsiveGridDelegate(
-                      maxCrossAxisExtent: 300,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 16 / 12,
-                      crossAxisSpacing: 10,
-                    ),
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
                     itemBuilder: (context, index) => ConfessWidget(
                       confession: confessionList[index],
-                    ),
+                    )
+                        .animate(delay: const Duration(milliseconds: 400))
+                        .fadeIn(duration: const Duration(milliseconds: 500))
+                        .moveY(begin: 16, end: 0),
                   ),
                 ),
                 error: (message) => Center(
@@ -66,5 +69,9 @@ class _DesktopDashboardScreenState extends State<DesktopDashboardScreen> {
         ],
       ),
     );
+  }
+
+  Color generateColorFromString(String join) {
+    return Colors.primaries[join.hashCode % Colors.primaries.length];
   }
 }
