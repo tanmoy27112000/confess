@@ -36,7 +36,7 @@ dependencies:
   paginated_search_bar: ^1.1.2
   responsive_builder: ^0.7.0
   responsive_framework: null
-  searchfield: ^0.8.3
+  searchfield: ^0.9.0
   shared_preferences: ^2.2.1
   simple_chips_input: ^1.2.0
   simple_gradient_text: ^1.2.4
