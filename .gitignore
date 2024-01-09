@@ -138,5 +138,3 @@ lib/firebase_options.dart
 
 .env
 .firebase/hosting.YnVpbGQvd2Vi.cache
-required_file/firebaseConfig.js
-required_file/firebase_options.dart
