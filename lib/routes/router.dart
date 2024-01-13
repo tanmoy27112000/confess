@@ -1,4 +1,5 @@
 import 'package:confess/screen/dashboard/screen/dashboard_screen.dart';
+import 'package:confess/screen/profile/screen/profile_screen.dart';
 import 'package:confess/screen/splash/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,8 +32,15 @@ final router = GoRouter(
             widget: DashboardScreen(),
           ),
         ),
+         GoRoute(
+          path: ProfileScreen.routeName.replaceAll('/', '').trim(),
+          builder: (context, state) => const ResponsiveBox(
+            widget: ProfileScreen(),
+          ),
+        ),
       ],
     ),
+    
     // GoRoute(
     //   path: DashboardScreen.routeName,
     //   builder: (context, state) => const ResponsiveBox(
