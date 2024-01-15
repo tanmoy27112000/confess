@@ -1,12 +1,10 @@
-// ignore_for_file: inference_failure_on_instance_creation
-
 import 'package:confess/constant/color.dart';
 import 'package:confess/gen/assets.gen.dart';
 import 'package:confess/helper/auth_helper.dart';
 import 'package:confess/helper/database_helper.dart';
 import 'package:confess/helper/prefs_helper.dart';
-import 'package:confess/screen/dashboard/widget/molecule/search_bar.dart';
 import 'package:confess/routes/router.dart';
+import 'package:confess/screen/dashboard/widget/molecule/search_bar.dart';
 import 'package:confess/screen/profile/screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
