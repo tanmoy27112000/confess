@@ -5,36 +5,18 @@ import 'package:confess/gen/assets.gen.dart';
 import 'package:confess/helper/auth_helper.dart';
 import 'package:confess/helper/database_helper.dart';
 import 'package:confess/helper/prefs_helper.dart';
+import 'package:confess/screen/dashboard/widget/molecule/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:searchfield/searchfield.dart';
-import 'package:substring_highlight/substring_highlight.dart';
 
 final focus = FocusNode();
 
-class Navbar extends StatefulWidget {
+class Navbar extends StatelessWidget {
   const Navbar({
     super.key,
   });
 
-  @override
-  State<Navbar> createState() => _NavbarState();
-}
-
-class _NavbarState extends State<Navbar> {
-  TextEditingController controller = TextEditingController();
-
-  List<String> companyList = [
-    'Fortmindz Global Services Pvt Ltd ',
-    'Mindtree Limited',
-    'Tata Consultancy Services Limited',
-    'Wipro Limited',
-    'Accenture',
-    'Cognizant Technology Solutions',
-    'Capgemini',
-    'Infosys Limited',
-  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -89,107 +71,7 @@ class _NavbarState extends State<Navbar> {
             ),
           ),
           const Spacer(),
-          if (false)
-            // ignore: dead_code
-            Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      height: 40,
-                      child: SearchField(
-                        suggestions: const [],
-                        searchStyle: const TextStyle(
-                          fontSize: 12,
-                        ),
-                        controller: controller,
-                        offset: const Offset(0, 43),
-                        maxSuggestionsInViewPort: 10,
-                        onSearchTextChanged: (p0) {
-                          return p0.length >= 3
-                              ? companyList
-                                  .where(
-                                    (element) => element.toLowerCase().contains(p0.toLowerCase()),
-                                  )
-                                  .toList()
-                                  .map(
-                                    (e) => SearchFieldListItem(
-                                      e,
-                                      child: ListTile(
-                                        minLeadingWidth: 0,
-                                        minVerticalPadding: 5,
-                                        iconColor: Kcolor.grey,
-                                        leading: Icon(
-                                          Icons.search,
-                                          color: Kcolor.grey,
-                                          size: 12,
-                                        ),
-                                        title: SubstringHighlight(
-                                          textStyleHighlight: TextStyle(
-                                            fontSize: 10,
-                                            color: Kcolor.darkPink,
-                                            fontWeight: FontWeight.w800,
-                                          ),
-                                          textStyle: TextStyle(
-                                            fontSize: 10,
-                                            color: Kcolor.grey,
-                                          ),
-                                          text: e,
-                                          term: controller.text,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList()
-                              : null;
-                        },
-                        suggestionsDecoration: SuggestionDecoration(
-                          color: Colors.white,
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 10,
-                              offset: Offset(0, 5),
-                            ),
-                          ],
-                        ),
-                        suggestionItemDecoration: const BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Color.fromRGBO(0, 0, 0, 0),
-                              width: 0,
-                            ),
-                          ),
-                        ),
-                        hint: 'Search company, job title, or keywords',
-                        searchInputDecoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(left: 5, top: 11),
-                          suffixIcon: Icon(
-                            Icons.search_rounded,
-                            color: Kcolor.black,
-                            size: 20,
-                          ),
-                          hintStyle: const TextStyle(
-                            fontSize: 12,
-                            color: Color.fromARGB(120, 29, 14, 98),
-                          ),
-                          border: InputBorder.none,
-                        ),
-                        key: const Key('searchfield'),
-                        textInputAction: TextInputAction.search,
-                        focusNode: focus,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          const AppSearchBar(),
           if (!ResponsiveBreakpoints.of(context).isMobile) const Spacer(),
           if (false)
             // ignore: dead_code

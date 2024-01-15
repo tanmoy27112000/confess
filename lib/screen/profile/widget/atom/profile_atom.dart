@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileAtom extends StatelessWidget {
-  const ProfileAtom({Key? key}) : super(key: key);
+  const ProfileAtom({super.key});
 
   @override
   Widget build(BuildContext context) {

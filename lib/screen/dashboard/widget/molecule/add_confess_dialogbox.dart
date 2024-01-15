@@ -41,7 +41,7 @@ Future<dynamic> addConfessDialogbox() {
                   children: [
                     ListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: Text(
+                      title: const Text(
                         'Add Confession',
                         style: TextStyle(
                           fontSize: 20,
@@ -68,7 +68,7 @@ Future<dynamic> addConfessDialogbox() {
                       formKey: formKey,
                     ),
                     const SizedBox(height: 20),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           'Gender',
@@ -193,7 +193,7 @@ Future<dynamic> addConfessDialogbox() {
                             children: [
                               Row(
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Add Confession',
                                     style: TextStyle(
                                       fontSize: 20,
@@ -213,12 +213,12 @@ Future<dynamic> addConfessDialogbox() {
                                         borderRadius: BorderRadius.circular(50),
                                         color: Kcolor.white,
                                       ),
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           CircleAvatar(
                                             radius: 15,
-                                            backgroundColor: const Color.fromRGBO(
+                                            backgroundColor: Color.fromRGBO(
                                               180,
                                               198,
                                               241,
@@ -229,7 +229,7 @@ Future<dynamic> addConfessDialogbox() {
                                               color: Kcolor.darkblue,
                                             ),
                                           ),
-                                          const SizedBox(width: 4),
+                                          SizedBox(width: 4),
                                           Text(
                                             'Close',
                                             style: TextStyle(
@@ -238,7 +238,7 @@ Future<dynamic> addConfessDialogbox() {
                                               color: Kcolor.black,
                                             ),
                                           ),
-                                          const SizedBox(width: 4),
+                                          SizedBox(width: 4),
                                         ],
                                       ),
                                     ),
@@ -283,7 +283,7 @@ Future<dynamic> addConfessDialogbox() {
                                       formKey: formKey,
                                     ),
                                     const SizedBox(height: 22),
-                                    Row(
+                                    const Row(
                                       children: [
                                         Text(
                                           'Your gender ',
@@ -341,9 +341,7 @@ Future<dynamic> addConfessDialogbox() {
                                                     child: Text(
                                                       gender[0],
                                                       style: TextStyle(
-                                                        color: selectedGender.value == gender[0]
-                                                            ? Kcolor.white
-                                                            : Kcolor.darkblue,
+                                                        color: selectedGender.value == gender[0] ? Kcolor.white : Kcolor.darkblue,
                                                         fontSize: 16,
                                                         fontWeight: FontWeight.w600,
                                                       ),
@@ -379,9 +377,7 @@ Future<dynamic> addConfessDialogbox() {
                                                     child: Text(
                                                       gender[1],
                                                       style: TextStyle(
-                                                        color: selectedGender.value == gender[1]
-                                                            ? Kcolor.white
-                                                            : Kcolor.darkblue,
+                                                        color: selectedGender.value == gender[1] ? Kcolor.white : Kcolor.darkblue,
                                                         fontSize: 16,
                                                         fontWeight: FontWeight.w600,
                                                       ),
@@ -431,7 +427,7 @@ Future<dynamic> addConfessDialogbox() {
                                         const DashboardEvent.getLatestConfession(),
                                       );
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       'Add Confessions',
                                       style: TextStyle(
                                         fontSize: 16,
@@ -461,7 +457,7 @@ Column tagField(
 }) {
   return Column(
     children: <Widget>[
-      Row(
+      const Row(
         children: [
           Text(
             'Tags i.e (Love, Office romance, etc)',
@@ -490,7 +486,7 @@ Column tagField(
 Column ageField(TextEditingController ageController) {
   return Column(
     children: <Widget>[
-      Row(
+      const Row(
         children: [
           Text(
             'Age (in number) ',
@@ -538,7 +534,7 @@ Column confessionField(TextEditingController confessionController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text(
+      const Text(
         'Your Confession',
         style: TextStyle(
           fontSize: 14,
@@ -576,7 +572,7 @@ Column confessionField(TextEditingController confessionController) {
 Column nameField(TextEditingController nameController) {
   return Column(
     children: <Widget>[
-      Row(
+      const Row(
         children: [
           Text(
             'Name ',

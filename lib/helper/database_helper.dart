@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confess/model/confession_model/confession_model.dart';
+import 'package:confess/model/tag_model/tag_model.dart';
 import 'package:flutter/material.dart';
 
 class DatabaseHelper {
@@ -10,6 +13,8 @@ class DatabaseHelper {
 
   //collection name
   final confessionCollection = 'confessions';
+
+  final tagsCollection = 'tags';
 
   ValueNotifier<int> confessionList = ValueNotifier<int>(0);
 
@@ -52,6 +57,31 @@ class DatabaseHelper {
         'tags': tags,
       },
     );
+  }
+
+  Future<List<TagModel>> getTags({String? search}) async {
+    try {
+      if (search == null || search.trim().length < 3) {
+        return [];
+      }
+      final query = db.collection(tagsCollection);
+      // .where(fieldName, isLessThan: '${search}z');
+
+      final result = await query.get();
+
+      if (result.docs.isEmpty) {
+        return [];
+      } else {
+        return result.docs
+            .map((e) => TagModel.fromJson(e.data()))
+            .where((e) => e.tagName.toLowerCase().contains(search.trim().toLowerCase()))
+            .toList();
+      }
+    } catch (e, st) {
+      log(e.toString(), stackTrace: st);
+      log(st.toString());
+      return [];
+    }
   }
 
   // Future<void> createCompanyData(List<Map<String, dynamic>> csvDataList) async {
