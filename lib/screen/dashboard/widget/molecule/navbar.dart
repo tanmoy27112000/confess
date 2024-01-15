@@ -73,8 +73,6 @@ class Navbar extends StatelessWidget {
           const Spacer(),
           const AppSearchBar(),
           if (!ResponsiveBreakpoints.of(context).isMobile) const Spacer(),
-          // if (false)
-          // ignore: dead_code
           ValueListenableBuilder<bool>(
             valueListenable: AuthHelper.instance.isLoggedIn,
             builder: (BuildContext context, bool value, Widget? child) {
