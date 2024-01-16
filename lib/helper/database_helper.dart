@@ -65,7 +65,6 @@ class DatabaseHelper {
         return [];
       }
       final query = db.collection(tagsCollection);
-      // .where(fieldName, isLessThan: '${search}z');
 
       final result = await query.get();
 
@@ -83,48 +82,4 @@ class DatabaseHelper {
       return [];
     }
   }
-
-  // Future<void> createCompanyData(List<Map<String, dynamic>> csvDataList) async {
-  //   for (final element in csvDataList) {
-  //     try {
-  //       await databases.createDocument(
-  //         databaseId: confessionDB,
-  //         collectionId: companyCollection,
-  //         // documentId: ID.unique(),
-  //         data: {
-  //           'name': element['name'],
-  //           'domain': element['domain'],
-  //           'startingYear': element['year founded'],
-  //           'industry': element['industry'],
-  //         },
-  //       );
-  //     } catch (e) {
-  //       print(e);
-  //     }
-  //   }
-  // }
-
-  // Future<List<CompanyModel>> getCompanyData() async {
-  // final result = await databases.listDocuments(
-  //   databaseId: confessionDB,
-  //   collectionId: companyCollection,
-  //   queries: [Query.limit(100)],
-  // );
-
-  // if (result.documents.isEmpty) {
-  //   return [];
-  // } else {
-  //   return result.documents
-  //       .map(
-  //         (e) => CompanyModel(
-  //           id: e.$id,
-  //           name: e.data['name'] as String,
-  //           domain: e.data['domain'] as String,
-  //           startingYear: e.data['startingYear'] as double,
-  //           industry: e.data['industry'] as String,
-  //         ),
-  //       )
-  //       .toList();
-  // }
-  // }
 }
