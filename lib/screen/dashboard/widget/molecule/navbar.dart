@@ -37,6 +37,7 @@ class _NavbarState extends State<Navbar> {
     'Capgemini',
     'Infosys Limited',
   ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -77,7 +78,8 @@ class _NavbarState extends State<Navbar> {
                 ),
                 ValueListenableBuilder<int>(
                   valueListenable: DatabaseHelper.instance.confessionList,
-                  builder: (BuildContext context, dynamic value, Widget? child) {
+                  builder:
+                      (BuildContext context, dynamic value, Widget? child) {
                     return Text(
                       '  $value',
                       style: const TextStyle(
@@ -117,7 +119,9 @@ class _NavbarState extends State<Navbar> {
                           return p0.length >= 3
                               ? companyList
                                   .where(
-                                    (element) => element.toLowerCase().contains(p0.toLowerCase()),
+                                    (element) => element
+                                        .toLowerCase()
+                                        .contains(p0.toLowerCase()),
                                   )
                                   .toList()
                                   .map(
@@ -171,7 +175,8 @@ class _NavbarState extends State<Navbar> {
                         ),
                         hint: 'Search company, job title, or keywords',
                         searchInputDecoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(left: 5, top: 11),
+                          contentPadding:
+                              const EdgeInsets.only(left: 5, top: 11),
                           suffixIcon: Icon(
                             Icons.search_rounded,
                             color: Kcolor.black,
@@ -222,11 +227,13 @@ class _NavbarState extends State<Navbar> {
                                 CircleAvatar(
                                   radius: 10,
                                   backgroundColor: const Color(0xffFF6AC3),
-                                  child: Assets.icons.anonymous.image(width: 15),
+                                  child:
+                                      Assets.icons.anonymous.image(width: 15),
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  PrefsHelper.instance.userData?.displayName ?? '',
+                                  PrefsHelper.instance.userData?.displayName ??
+                                      '',
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
@@ -256,9 +263,8 @@ class _NavbarState extends State<Navbar> {
                   : HoverOver(
                       builder: (isHovered) {
                         return InkWell(
-                          onTap: () {
-                            // AuthHelper.instance.signInWithGoogle();
-                            router.push(ProfileScreen.routeName);
+                          onTap: () async {
+                            await AuthHelper.instance.signInWithGoogle();
                           },
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
