@@ -1,26 +1,11 @@
 part of 'navbar_bloc.dart';
 
-abstract class NavbarState {
-  const NavbarState();
-}
-
-class NavbarInitialState extends NavbarState {
-  const NavbarInitialState();
-}
-
-class NavbarLoadingState extends NavbarState {
-  const NavbarLoadingState();
-}
-
-class NavbarLoadedState extends NavbarState {
-  const NavbarLoadedState({required this.tagList});
-
-  final List<TagModel> tagList;
-}
-
-class NavbarErrorState extends NavbarState {
-  const NavbarErrorState({
-    required this.message,
-  });
-  final String message;
+@freezed
+class NavbarState with _$NavbarState {
+  const factory NavbarState.initial() = _Initial;
+  const factory NavbarState.loading() = _Loading;
+  const factory NavbarState.loaded({
+    required List<TagModel> tagList,
+  }) = _Loaded;
+  const factory NavbarState.error({required String message}) = _Error;
 }

@@ -8,7 +8,7 @@ part 'navbar_event.dart';
 part 'navbar_state.dart';
 
 class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
-  NavbarBloc() : super(const NavbarInitialState()) {
+  NavbarBloc() : super(const _Initial()) {
     on<_Started>(_onStarted);
     on<_GetTags>(_onGetTags);
   }
@@ -16,17 +16,17 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
   List<TagModel> tagList = [];
 
   Future<void> _onStarted(_Started event, Emitter<NavbarState> emit) async {
-    emit(const NavbarInitialState());
+    emit(const _Initial());
   }
 
   Future<void> _onGetTags(_GetTags event, Emitter<NavbarState> emit) async {
-    emit(const NavbarLoadingState());
+    emit(const _Loading());
 
     try {
       tagList = await DatabaseHelper.instance.getTags(search: event.query);
-      emit(NavbarLoadedState(tagList: tagList));
+      emit(_Loaded(tagList: tagList));
     } catch (e) {
-      emit(NavbarErrorState(message: e.toString()));
+      emit(_Error(message: e.toString()));
     }
   }
 }

@@ -16,65 +16,73 @@ class AppSearchBar extends StatefulWidget {
 
 class _AppSearchBarState extends State<AppSearchBar> {
   TextEditingController controller = TextEditingController();
-
+  late NavbarBloc navbarBloc;
   Debouncer debouncer = Debouncer();
+
+  @override
+  void initState() {
+    navbarBloc = context.read<NavbarBloc>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 300,
       child: BlocBuilder<NavbarBloc, NavbarState>(
+        bloc: navbarBloc,
         builder: (context, state) {
           return SearchField(
-            suggestions: state is NavbarLoadingState
-                ? [
-                    SearchFieldListItem(
-                      'loading',
-                      key: const ValueKey('loading'),
-                      item: 'loading',
-                      child: Transform.scale(
-                        scale: 0.6,
-                        child: const Center(
-                          child: CircularProgressIndicator(strokeWidth: 3),
+            suggestions: state.maybeWhen(
+              orElse: () => [],
+              loading: () => [
+                SearchFieldListItem(
+                  'loading',
+                  key: const ValueKey('loading'),
+                  item: 'loading',
+                  child: Transform.scale(
+                    scale: 0.6,
+                    child: const Center(
+                      child: CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                  ),
+                ),
+              ],
+              loaded: (tagList) => tagList
+                  .map(
+                    (e) => SearchFieldListItem(
+                      e.tagName,
+                      key: ValueKey(e),
+                      item: e,
+                      child: ListTile(
+                        dense: true,
+                        minLeadingWidth: 0,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                        visualDensity: VisualDensity.compact,
+                        iconColor: Kcolor.grey,
+                        leading: const Icon(
+                          Icons.search,
+                          color: Kcolor.grey,
+                          size: 12,
+                        ),
+                        title: SubstringHighlight(
+                          textStyleHighlight: const TextStyle(
+                            fontSize: 10,
+                            color: Kcolor.darkPink,
+                            fontWeight: FontWeight.w800,
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 10,
+                            color: Kcolor.grey,
+                          ),
+                          text: e.tagName,
+                          term: controller.text,
                         ),
                       ),
                     ),
-                  ]
-                : state is! NavbarLoadedState
-                    ? []
-                    : state.tagList
-                        .map(
-                          (e) => SearchFieldListItem(
-                            e.tagName,
-                            key: ValueKey(e),
-                            item: e,
-                            child: ListTile(
-                              dense: true,
-                              minLeadingWidth: 0,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                              visualDensity: VisualDensity.compact,
-                              iconColor: Kcolor.grey,
-                              leading: const Icon(
-                                Icons.search,
-                                color: Kcolor.grey,
-                                size: 12,
-                              ),
-                              title: SubstringHighlight(
-                                textStyleHighlight: const TextStyle(
-                                  fontSize: 10,
-                                  color: Kcolor.darkPink,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                                textStyle: const TextStyle(
-                                  fontSize: 10,
-                                  color: Kcolor.grey,
-                                ),
-                                text: e.tagName,
-                                term: controller.text,
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
+                  )
+                  .toList(),
+            ),
             searchStyle: const TextStyle(fontSize: 12),
             controller: controller,
             offset: const Offset(0, 50),
