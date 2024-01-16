@@ -3,7 +3,6 @@
 import 'package:confess/env/env.dart';
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform, kIsWeb;
-
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
 /// Example:
@@ -46,9 +45,9 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: Env.firebaseAPIKey,
-    appId: Env.firebaseAppId,
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: Env.firebaseWebAPIKey,
+    appId: Env.firebaseWebAppId,
     messagingSenderId: Env.firebaseMessagingId,
     projectId: Env.firebaseProjectId,
     authDomain: Env.firebaseAuthDomain,
@@ -56,17 +55,17 @@ class DefaultFirebaseOptions {
     measurementId: Env.firebaseMeasurementId,
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: Env.firebaseAPIKey,
-    appId: Env.firebaseAppId,
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: Env.firebaseAndroidAPIKey,
+    appId: Env.firebaseAndroidAppId,
     messagingSenderId: Env.firebaseMessagingId,
     projectId: Env.firebaseProjectId,
     storageBucket: Env.firebaseStorageBucket,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: Env.firebaseAPIKey,
-    appId: Env.firebaseAppId,
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: Env.firebaseIOSAPIKey,
+    appId: Env.firebaseIOSAppId,
     messagingSenderId: Env.firebaseMessagingId,
     projectId: Env.firebaseProjectId,
     storageBucket: Env.firebaseStorageBucket,

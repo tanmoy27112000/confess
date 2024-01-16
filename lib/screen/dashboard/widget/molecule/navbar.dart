@@ -57,7 +57,8 @@ class Navbar extends StatelessWidget {
                 ),
                 ValueListenableBuilder<int>(
                   valueListenable: DatabaseHelper.instance.confessionList,
-                  builder: (BuildContext context, dynamic value, Widget? child) {
+                  builder:
+                      (BuildContext context, dynamic value, Widget? child) {
                     return Text(
                       '  $value',
                       style: const TextStyle(
@@ -100,11 +101,13 @@ class Navbar extends StatelessWidget {
                                 CircleAvatar(
                                   radius: 10,
                                   backgroundColor: const Color(0xffFF6AC3),
-                                  child: Assets.icons.anonymous.image(width: 15),
+                                  child:
+                                      Assets.icons.anonymous.image(width: 15),
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  PrefsHelper.instance.userData?.displayName ?? '',
+                                  PrefsHelper.instance.userData?.displayName ??
+                                      '',
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
@@ -134,9 +137,8 @@ class Navbar extends StatelessWidget {
                   : HoverOver(
                       builder: (isHovered) {
                         return InkWell(
-                          onTap: () {
-                            // AuthHelper.instance.signInWithGoogle();
-                            router.push(ProfileScreen.routeName);
+                          onTap: () async {
+                            await AuthHelper.instance.signInWithGoogle();
                           },
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
