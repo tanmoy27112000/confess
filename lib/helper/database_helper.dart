@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confess/model/confession_model/confession_model.dart';
+import 'package:confess/model/tag_model/tag_model.dart';
 import 'package:flutter/material.dart';
 
 class DatabaseHelper {
@@ -10,6 +13,8 @@ class DatabaseHelper {
 
   //collection name
   final confessionCollection = 'confessions';
+
+  final tagsCollection = 'tags';
 
   ValueNotifier<int> confessionList = ValueNotifier<int>(0);
 
@@ -54,47 +59,27 @@ class DatabaseHelper {
     );
   }
 
-  // Future<void> createCompanyData(List<Map<String, dynamic>> csvDataList) async {
-  //   for (final element in csvDataList) {
-  //     try {
-  //       await databases.createDocument(
-  //         databaseId: confessionDB,
-  //         collectionId: companyCollection,
-  //         // documentId: ID.unique(),
-  //         data: {
-  //           'name': element['name'],
-  //           'domain': element['domain'],
-  //           'startingYear': element['year founded'],
-  //           'industry': element['industry'],
-  //         },
-  //       );
-  //     } catch (e) {
-  //       print(e);
-  //     }
-  //   }
-  // }
+  Future<List<TagModel>> getTags({String? search}) async {
+    try {
+      if (search == null || search.trim().length < 3) {
+        return [];
+      }
+      final query = db.collection(tagsCollection);
 
-  // Future<List<CompanyModel>> getCompanyData() async {
-  // final result = await databases.listDocuments(
-  //   databaseId: confessionDB,
-  //   collectionId: companyCollection,
-  //   queries: [Query.limit(100)],
-  // );
+      final result = await query.get();
 
-  // if (result.documents.isEmpty) {
-  //   return [];
-  // } else {
-  //   return result.documents
-  //       .map(
-  //         (e) => CompanyModel(
-  //           id: e.$id,
-  //           name: e.data['name'] as String,
-  //           domain: e.data['domain'] as String,
-  //           startingYear: e.data['startingYear'] as double,
-  //           industry: e.data['industry'] as String,
-  //         ),
-  //       )
-  //       .toList();
-  // }
-  // }
+      if (result.docs.isEmpty) {
+        return [];
+      } else {
+        return result.docs
+            .map((e) => TagModel.fromJson(e.data()))
+            .where((e) => e.tagName.toLowerCase().contains(search.trim().toLowerCase()))
+            .toList();
+      }
+    } catch (e, st) {
+      log(e.toString(), stackTrace: st);
+      log(st.toString());
+      return [];
+    }
+  }
 }

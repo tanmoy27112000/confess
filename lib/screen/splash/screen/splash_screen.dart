@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Confess.life',
                   style: TextStyle(
                     fontSize: 40,

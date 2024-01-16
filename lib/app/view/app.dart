@@ -2,6 +2,7 @@ import 'package:confess/helper/prefs_helper.dart';
 import 'package:confess/l10n/l10n.dart';
 import 'package:confess/routes/router.dart';
 import 'package:confess/screen/dashboard/dashboard_bloc/dashboard_bloc.dart';
+import 'package:confess/screen/dashboard/navbar_bloc/navbar_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,9 @@ class _AppState extends State<App> {
       providers: [
         BlocProvider<DashboardBloc>(
           create: (context) => DashboardBloc(),
+        ),
+        BlocProvider<NavbarBloc>(
+          create: (context) => NavbarBloc(),
         ),
       ],
       child: MaterialApp.router(
