@@ -52,7 +52,7 @@ dev_dependencies:
   freezed: ^2.4.1
   json_serializable: null
   mocktail: ^0.3.0
-  very_good_analysis: ^4.0.0
+  very_good_analysis: ^5.1.0
 
 flutter:
   uses-material-design: true
